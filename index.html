@@ -3,102 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hackly - Join The Waitlist</title>
+    <link rel="icon" href="https://img.freepik.com/vecteurs-libre/conception-motif-damier-design-plat_23-2149629438.jpg" type="image/png">
+    <title>About Hackly</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <script src="https://getlaunchlist.com/js/widget.js" defer></script>
-    <script src="https://getlaunchlist.com/js/widget-diy.js" defer></script>
-    <link rel="icon" href="favicon__7_-removebg-preview.png" type="image/x-icon">
-
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <nav>
-        
         <div class="nav_content">
-            <p><strong class="logo">Hackly</strong></p>
-            <button onclick="myFunction()">
-                <input type="checkbox" class="checkbox" id="checkbox">
-                <label for="checkbox" class="checkbox-label">
-                    <span class="icons"><img src="moon.png" alt="" width="15px"></span>
-                    <span><img src="sun.png" alt="" width="15px"></span>
-                    <span class="ball"></span>
-                </label>
-            </button>
+            <p><strong class="logo"><a href="#header">Hackly</a></strong></p>
+            <span class="nav_right">
+                <ul>
+                    <button onclick="myFunction()" class="theme"><li class="theme_button"><span class="material-icons md-48">contrast</span></li></button>
+                </ul>
+            </span>
         </div>
     </nav>
 
-    <header>
+    <header id="header">
+        <div class="seconde_nav">
+            <p class="subtext">PLEASE NOTE: Hackly will only be open to registered participants.</p>
+        </div>
         <div class="content">
-            <div class="one_liner">
-                <p><strong>Hackly is a wiki-style hackathon to design solutions through online discussions.</strong></p>
-                <br><br>
-                <form class="launchlist-form" action="https://getlaunchlist.com/s/vIo1Lq" method="POST">
-                    <input name="email" type="email" placeholder="Email">
-                    <button type="submit" class="cta">Get Early Access</button>
-                </form>
-            </div>
+            <ul>
+                <li><h1>No teams, no judges, no theme.</h1></li>
+                <li class="smalltext">Hackly is an online ideathon – a group brainstorming event for new ideas with rewards but no restrictions.</li>
+                <li>
+                    <form class="launchlist-form" action="https://getlaunchlist.com/s/vIo1Lq" method="POST">
+                        <input name="email" type="Enter email" placeholder="Email" class="placeholder_cta">
+                        <button type="submit" class="header_cta">Register</button>
+                    </form>
+                </li>
+            </ul>
         </div>
     </header>
 
-    <div class="sub_img"></div>
-    <!--<div class="img_credits"><a href="#">Illustration by rdm_dg</a></div>-->
-
-    <section class="faq_section">
+    <main>
         <div class="content">
-            <h2>Questions & Answers</h2>
-            <ul class="accordion">
-                <li class="accordion__item">
-                    <input type="checkbox" checked>
-                    <i class="accordion__arrow"></i>
-                    <h3 class="accordion__title">How does it work ?</h3>
-                    <p class="accordion__content">Like other hackathons, we bring talent together to work on a mutual problem. However, we don't divide the community into teams. Anyone can contribute to existing ideas or create their own solution from scratch and improve it with input from other community members. This allows everyone to work on what they want, when they want.</p>
-                </li>
-                <li class="accordion__item">
-                    <input type="checkbox" checked>
-                    <i class="accordion__arrow"></i>
-                    <h3 class="accordion__title">What about IP Rights ?</h3>
-                    <p class="accordion__content">All solutions will be open source and freely accessible. This transparency ensures that everyone can benefit from and build upon the shared knowledge.</p>
-                </li>
-                <li class="accordion__item">
-                    <input type="checkbox" checked>
-                    <i class="accordion__arrow"></i>
-                    <h3 class="accordion__title">What skills do I need to participate ?</h3>
-                    <p class="accordion__content">The solution takes the form of a whitepaper explaining the idea, its implementation, and its potential impact. Unlike traditional crowdsourcing, you don't need to provide complete solutions on your own. You can contribute technically, graphically, through design, or even writing. Questions and half-baked ideas are also encouraged and considered as contributions, as they spark discussions and help refine the solution.</p>
-                </li>
-                <li class="accordion__item">
-                    <input type="checkbox" checked>
-                    <i class="accordion__arrow"></i>
-                    <h3 class="accordion__title">Why join the waitlist ?</h3>
-                    <p class="accordion__content">We are initially limiting participation to the first 100 sign-ups to help us find sponsors and propose initial projects. It's free, and we will only contact you for relevant updates and opportunities (no ads, spam, etc).</p>
-                </li>
-                <li class="accordion__item">
-                    <input type="checkbox" checked>
-                    <i class="accordion__arrow"></i>
-                    <h3 class="accordion__title">Why change the way hackathons work ?</h3>
-                    <p class="accordion__content">Traditional hackathons often face several issues that our community addresses by fostering a collaborative, transparent, and supportive environment where everyone can contribute meaningfully and at their own pace. These challenges include:
-                        <br><br>Surface solutions: Frontend projects often dominate, and winning ideas are repeated year after year with limited real-world application.
-                        <br><br>Cheating and unethical behavior: Plagiarism, code copying, and extensive pre-preparation are common, along with pre-formed teams.
-                        <br><br>Barrier to entry: Here, no need to find a team, submit complete solutions on complex and interdisciplinary topics on our own, finish sleep deprived because we work 48hrs straight in stressful and unhealthy working conditions.
-                    </p>
-                </li>
-            </ul> 
+            <img src="https://raw.githubusercontent.com/gethackly/gethackly.github.io/refs/heads/main/47302571886.png" alt="">
+        </div>
+    </main>
+
+    <section class="explanation">
+        <div class="content">
+            <div class="main_space_container"></div>
+            <div class="main_text_container">
+                <p>Hackly is a 5-day event where participants worldwide brainstorm to solve problems together. From defining the problem to designing solutions, everything is shaped by the community, allowing everyone to share, improve, and build on each other's ideas. Top contributors earn rewards.<br><br>This wiki-style approach connects you to a broader network, eliminating the need to find teammates. You can contribute at your own pace and focus on what you want, whenever you want, while leveraging collective intelligence to inspire breakthrough ideas.</p>
+            </div>
         </div>
     </section>
-    
+    <section class="faq_section">
+        <div class="content">
+            <p class="introtext">60+ already register</p>
+            <h2>Our Ideathon at a glance</h2>
+            <div class="faq_container">
+                <button class="accordion">How will the event be run ?</button>
+                <div class="panel">
+                    <p><br>Much like how Wikipedia gathers encyclopedic articles or open-source projects to manage code files, this event will centralize community ideas in an article that explains solutions to specific problems. This document will be accessible to all, and the aim is to create collaborative content as the community discusses it.<br><br><strong>Days 1-2: Sharing Problems</strong><br>Participants will share the problems they want to address, serving as the introduction to the article. The community will refine these contributions to clarify the issues, with no thematic restrictions or commercial value constraints.<br><br><strong>Days 3-5: Idea Proposals</strong><br>To build the main body of the article, participants will propose ideas for addressing the identified problems. The community will discuss potential risks and challenges, working together to find ways to overcome these obstacles.</p>
+                </div>
+                <button class="accordion">How is the reward distributed ?</button>
+                <div class="panel">
+                    <p>We believe that the most impactful contributions are those that generate discussion and foster collaborative development. To encourage this, we rank contributors according to the interactions generated by their contributions. Reward money will be distributed to the top 10 contributors, rather than to individual projects.</p>
+                </div>
+                <button class="accordion">When does it start?</button>
+                <div class="panel">
+                    <p>We're aiming to hold the event from December 18 to 23, with participation limited to the first 300 sign-ups. By joining, you’ll help us attract sponsors and enhance the experience. It’s free, and we’ll only reach out with relevant updates and opportunities—no ads or spam.</p>
+                </div>
+                <button class="accordion">How can I make a good contribution?</button>
+                <div class="panel">
+                    <p>There are a multitude of ways to contribute, from asking questions, to documenting arguments, to picking up on other ideas, to criticizing, to creating new proposals... Even incomplete contributions are valued, as they can stimulate discussion and enrich collective thinking.</p>
+                </div>
+                <button class="accordion">What about IP Rights ?</button>
+                <div class="panel">
+                    <p>All solutions will be open source and freely accessible. This transparency ensures that everyone can benefit from and build upon the shared knowledge.</p>
+                </div>
+                <button class="accordion">I still have a question !</button>
+                <div class="panel">
+                    <p>Email us at hellohackly@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="content">
-            <p>You can contact us by email at hellohackly@gmail.com, and join the waitlist below !</p>
-            <br><br>
             <form class="launchlist-form" action="https://getlaunchlist.com/s/vIo1Lq" method="POST">
-                <input name="email" type="email" placeholder="Email">
-                <button type="submit" class="cta">Get Early Access</button>
+                <input name="email" type="Enter email" placeholder="Email" class="placeholder_cta">
+                <button type="submit" class="header_cta">Register</button>
             </form>
         </div>
     </footer>
-</body>
 
+    <section class="sponsor">
+        <div class="content">
+            <h2 id="sponsor_tag">Sponsors</h2>
+            <p>If interested in Sponsoring, please reach out via hellohackly@gmail.io</p>
+        </div>
+    </section>
+</body>
 </html>

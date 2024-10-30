@@ -20,32 +20,22 @@ acc[i].addEventListener("click", function() {
 });
 }
 
-//modal
-        // Sélectionne tous les boutons qui ouvrent le modal
-        document.querySelectorAll(".openModalBtn").forEach(btn => {
-            btn.addEventListener("click", function() {
-                // Affiche le modal
-                document.querySelector(".modal").style.display = "block";
-                // Ajoute la classe pour empêcher le défilement du fond
-                document.body.classList.add("modal-open");
-            });
-        });
+//COUNTDOWN
+var countDownDate = new Date("November 25, 2024 23:59:00").getTime();
+var timeClear = setInterval(function() {
+var now = new Date().getTime();
+var timeLeft = countDownDate - now;
 
-        // Sélectionne tous les boutons de fermeture dans le modal
-        document.querySelectorAll(".closeModalBtn").forEach(btn => {
-            btn.addEventListener("click", function() {
-                // Masque le modal
-                document.querySelector(".modal").style.display = "none";
-                // Retire la classe pour permettre le défilement
-                document.body.classList.remove("modal-open");
-            });
-        });
+var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        // Ferme le modal si l'utilisateur clique en dehors du contenu du modal
-        window.addEventListener("click", function(event) {
-            const modal = document.querySelector(".modal");
-            if (event.target === modal) {
-                modal.style.display = "none";
-                document.body.classList.remove("modal-open");
-            }
-        });
+document.querySelector(".timer").innerHTML =
+    days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+if (timeLeft < 0) {
+    clearInterval(timeClear);
+    document.querySelector(".timer").innerHTML = "Timer Finished";
+}
+}, 1000);

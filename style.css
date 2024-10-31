@@ -454,6 +454,7 @@ body.modal-open {
     }
 
     .seconde_nav p{
+	height: unset;
         width: 70%;
         padding: 5px 0;
     }

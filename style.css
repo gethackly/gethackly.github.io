@@ -277,6 +277,37 @@ main .content video {
     font-size: 18px;
     display: contents;
 }
+
+/*LOGO COLLAB*/
+.collab_logo{
+    border-bottom: dashed 1px var(--black);
+}
+
+.collab_logo .content{
+    align-items: center;
+    padding: 2%;
+}
+
+.collab_logo .content ul{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.collab_logo .content ul li{
+    width: 12%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    flex-wrap: wrap;
+}
+
+.collab_logo .content ul li img{
+    width: 100%;
+    filter: contrast(0%);
+}
+
 /*article overview*/
 
 article{
@@ -477,6 +508,11 @@ body.modal-open {
         flex-direction: column;
         border: none;
     }
+    
+    .collab_logo .content ul{
+        justify-content: space-around;
+    }
+
 
     .main_space_container {
         width: 0;

@@ -493,6 +493,7 @@ body.modal-open {
     header .content {
         align-items: center;
         text-align: center;
+	padding: 15% 0;
     }
 
     
@@ -512,7 +513,11 @@ body.modal-open {
     .collab_logo .content ul{
         justify-content: space-around;
     }
-
+    
+    .collab_logo{
+        padding: 15% 0;
+	text-align:center;
+    }
 
     .main_space_container {
         width: 0;
@@ -533,6 +538,14 @@ body.modal-open {
         background-color: var(--accone);
         padding: 8px 12px;
         border: dashed 1px;
+    }
+
+    .explanation{
+        padding: 15% 0;
+    }
+
+    .faq_section{
+        padding: 15% 0;
     }
 }
 

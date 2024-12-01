@@ -544,6 +544,10 @@ body.modal-open {
         padding: 0;
     }
 
+    #last_acc{
+	border-bottom:dashed 1px var(--black);
+    }
+
     .footer_cta{
         background-color: var(--accone);
         padding: 8px 12px;

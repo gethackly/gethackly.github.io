@@ -481,7 +481,8 @@ body.modal-open {
     }
 
     .nav_content {
-        width: 95%;
+        width: 100%;
+        padding-left: 4%;
     }
 
     .seconde_nav p{

@@ -490,6 +490,10 @@ body.modal-open {
         padding: 5px 0;
     }
 
+    .nav_right {
+    	border-right: none;
+    }
+
     header .content {
         align-items: center;
         text-align: center;

@@ -496,6 +496,11 @@ body.modal-open {
 	padding: 15% 0;
     }
 
+    #berkelylogo{
+	display: none;
+	visibility: hidden;
+    }
+
     
     header ul{
         display: flex;

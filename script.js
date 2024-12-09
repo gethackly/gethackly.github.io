@@ -20,7 +20,7 @@ acc[i].addEventListener("click", function() {
 });
 }
 
-COUNTDOWN
+//COUNTDOWN
 var countDownDate = new Date("December 20, 2024 16:00:01").getTime();
 var timeClear = setInterval(function() {
 var now = new Date().getTime();

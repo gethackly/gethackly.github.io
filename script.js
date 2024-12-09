@@ -20,8 +20,8 @@ acc[i].addEventListener("click", function() {
 });
 }
 
-/*COUNTDOWN
-var countDownDate = new Date("December 17, 2024 16:00:01").getTime();
+COUNTDOWN
+var countDownDate = new Date("December 20, 2024 16:00:01").getTime();
 var timeClear = setInterval(function() {
 var now = new Date().getTime();
 var timeLeft = countDownDate - now;
@@ -39,4 +39,3 @@ if (timeLeft < 0) {
     document.querySelector(".timer").innerHTML = "Timer Finished";
 }
 }, 1000);
-*/

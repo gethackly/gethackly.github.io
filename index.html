@@ -18,6 +18,7 @@
             <p><strong class="logo"><a href="#header">Hackly</a></strong></p>
             <span class="nav_right">
                 <ul>
+                    <li id="nav_cta"><a href="https://discord.gg/wjcrUqrQ">Get in</a></li>
                     <button onclick="myFunction()" class="theme"><li class="theme_button"><span class="material-icons md-48">contrast</span></li></button>
                 </ul>
             </span>
@@ -27,20 +28,21 @@
     <header id="header">
         <div class="content">
             <ul>
-                <li class = "smalltext">First iteration</li>
+                <li class="timer" id="smalltext"></li>
                 <li><h1>A wiki-style Hackathon</h1></li>
-                <li class="smalltext">A 3-day online event to launch open source project through online discussions.</li>
-                <li>
-                    <form class="launchlist-form" action="https://getlaunchlist.com/s/vIo1Lq" method="POST">
+                <li id="smalltext">A 3-day online event to launch open source project through online discussions.</li>
+                <li id="cta_header">
+                    <!--<form class="launchlist-form" action="https://getlaunchlist.com/s/vIo1Lq" method="POST">
                         <input name="email" type="Enter email" placeholder="Email" class="placeholder_cta">
                         <button type="submit" class="header_cta">Register</button>
-                    </form>
+                    </form>-->
+                    <a class="cta" href="https://discord.gg/wjcrUqrQ">Join the discord group</a>
                 </li>
             </ul>
         </div>
     </header>
 
-    <section class="collab_logo">
+    <!--<section class="collab_logo">
         <div class="content">
             <div class="logo_intro"> Collabotarors from these organizations already registered</div>
             <ul>
@@ -51,53 +53,47 @@
                 <li><img src="https://raw.githubusercontent.com/Mugiballa7/Mugiballa7.github.io/refs/heads/main/629a63fbc979dec9708b11b3.png" alt=""></li>
             </ul>
         </div>
-    </section>
+    </section>-->
 
     <section class="explanation">
         <div class="content">
             <div class="main_space_container"></div>
             <div class="main_text_container">
-                <h3 class="timer"></h3>
-                <br>
-                <p>Our hackathon is massively collaborative — no teams, just a place where everyone can share ideas and build on each other. So you can contribute as much or as little as you like and skip the search for teammates.<br><br>We'll use Github for hosting and discussions will take place in a dedicated subreddit. We consider a valuable contribution to be one that sparks debate within the group.<br><br>With this in mind, we developed a Reddit bot that ranks participant's influence within the community, with scores displayed on a leaderboard.</p>
+                <p>Alongside the desire to give back to the community, most developers contribute either to improve tools they (could) use or out of intellectual curiosity. But, contributing to open source is time-consuming and requires a good understanding of codebases and guidelines.<br><br>Meanwhile, promising open-source projects often fail to take off because creators carry the entire weight before the projects are usable, let alone attract contributors. Missing the collective intelligence needed to grasp all opportunities and risk to deliver value at the end.<br><br>Gathering a community at the start of a project could solve both these problems, by sharing the workload and making the right fundamental choices at the beginning of any valuable project. Hackly is a three-day sprint to test this approach.</p>
             </div>
         </div>
     </section>
 
-    <main>
+    <!--<main>
         <div class="content">
             <img src="https://raw.githubusercontent.com/gethackly/gethackly.github.io/refs/heads/main/47302571886.png" alt="">
         </div>
-    </main>
+    </main>-->
 
     <section class="faq_section">
         <div class="content">
-            <p class="introtext">100+ already register</p>
-            <h2>Our Ideathon at a glance</h2>
+            <!--<p class="introtext">100+ already register</p>-->
+            <h2>at a glance</h2>
             <div class="faq_container">
-                <button class="accordion">What is a hackathon?</button>
+                <button class="accordion">What is the program?</button>
                 <div class="panel">
-                    <p>An event during which people come together for several days to work on a collaborative computer programming or digital creation project. Traditionally closed and carried out by small teams, we have rethought this format to make it easier to access and capitalize on the collective intelligence of the whole group.</p>
+                    <p>Step one : Share a project ideas. The aim will be to work in a top-down manner. If you have ideas, you can already share it in your discord.<br><br>Step two : Vote for the projects you’d like to work on, and talk about it with other people interessted.<br><br>Step three (begins december 27) : Break down the idea and see how it could be improved and the first version of the idea can be launched, with an emphasis on extensibility and versioning to support future development.</p>
                 </div>
-                <button class="accordion">Why register?</button>
+                <button class="accordion">Where will it happen ?</button>
                 <div class="panel">
-                    <p>We're looking for sponsors and hope to launch the first event at the end of December. By registering you increase the value of our event and speed up the process. Also registration will close before the event starts. We’ll only send essential updates—no spam or promos.</p>
+                    <p>Online! We’ll use Discord for discussion and Github for hosting.</p>
                 </div>
-                <button class="accordion">Do I have what it takes to contribute ?</button>
+                <button class="accordion">Is there a theme ?</button>
                 <div class="panel">
-                    <p>There are a multitude of ways to contribute, from asking questions, to documenting arguments, to picking up on other ideas, to criticizing, to creating new proposals... Even incomplete contributions are valued, as they can stimulate discussion and enrich collective thinking.</p>
+                    <p>There is no theme. The goal is to let participants free to work on projects they found valuable, without focusing on commercial value or project difficulty.</p>
                 </div>
-                <button class="accordion">So there's no judge?</button>
-                <div class="panel">
-                    <p>There are no judges, so there are no winning solutions and no prize. The goal is to reflect on projects for the common good, without focusing on commercial value or project difficulty.<br><br>Also, the jury's subjectivity can foster an overly competitive atmosphere, resulting in superficial solutions aimed merely at meeting the winning criteria. Here, the focus is on fostering team spirit.</p>
-                </div>
-                <button class="accordion">What about IP Rights ?</button>
+                <button class="accordion">About IP Rights ?</button>
                 <div class="panel">
                     <p>All solutions will be open source and freely accessible. This transparency ensures that everyone can benefit from and build upon the shared knowledge.</p>
                 </div>
                 <button class="accordion">I still have a question !</button>
                 <div class="panel" id="last_acc">
-                    <p>Email us at hello@hackly.tech</p>
+                    <p>Email hello@hackly.tech</p>
                 </div>
             </div>
         </div>
@@ -105,14 +101,15 @@
 
     <footer>
         <div class="content">
-            <form class="launchlist-form" action="https://getlaunchlist.com/s/vIo1Lq" method="POST">
+            <!--<form class="launchlist-form" action="https://getlaunchlist.com/s/vIo1Lq" method="POST">
                 <input name="email" type="Enter email" placeholder="Email" class="placeholder_cta">
                 <button type="submit" class="header_cta">Register</button>
-            </form>
+            </form>-->
+            <p>Contact : hello@hackly.tech</p>
         </div>
     </footer>
 
-    <section class="sponsor">
+    <!--<section class="sponsor">
         <div class="content">
             <h2 id="sponsor_tag">Sponsors</h2>
             <p>If interested in Sponsoring, please reach out via hello@hackly.tech</p>
@@ -122,6 +119,6 @@
         <div class="content">
             <p>Made from the ❤️ by the Hackly team.</p>
         </div>
-    </div>
+    </div>-->
 </body>
 </html>

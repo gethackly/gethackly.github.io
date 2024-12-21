@@ -21,7 +21,7 @@ acc[i].addEventListener("click", function() {
 }
 
 //COUNTDOWN
-var countDownDate = new Date("December 20, 2024 16:00:01").getTime();
+var countDownDate = new Date("December 27, 2024 16:00:01").getTime();
 var timeClear = setInterval(function() {
 var now = new Date().getTime();
 var timeLeft = countDownDate - now;

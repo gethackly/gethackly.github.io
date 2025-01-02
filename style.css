@@ -17,19 +17,19 @@
 
 /* Variables */
 :root {
-    --black: #270900;
-    --white: #fdfffe;
-    --blur: #f8fdf8b9;
-    --accone: #7AE7C7;
-    --acctwo: #C4B1AE;
+    --black: #1A1A2E;
+    --white: #EAEAEA;
+    --blur: #F2F2F2B9;
+    --accone: #FF6363;
+    --acctwo: #63C7FF;
 }
 
 .dark-mode {
-    --black: #f0f7f4;
-    --white: #140700;
-    --blur: #110400b9;
-    --accone: #0120cf;
-    --acctwo: #921313;
+    --black: #EAEAEA;
+    --white: #1A1A2E;
+    --blur: #1A1A2EB9;
+    --accone: #FF6363;
+    --acctwo: #63C7FF;
 }
 
 /* Body */

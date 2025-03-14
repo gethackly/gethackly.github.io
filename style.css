@@ -69,6 +69,10 @@ h1 {
     font-weight: 500;
 }
 
+p{
+	font-family: "Inter", "Lora", serif;
+}
+
 .logo {
     font-size: 28px;
 }

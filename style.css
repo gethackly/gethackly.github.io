@@ -6,7 +6,7 @@
     text-decoration: none;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
-    font-family: "Lora", serif;
+    font-family: "Inter", serif;
     scroll-behavior: smooth;
     color: unset;
 }
@@ -70,7 +70,7 @@ h1 {
 }
 
 p{
-	font-family: "Inter", "Lora", serif;
+	font-family: "Inter", serif;
 }
 
 .logo {

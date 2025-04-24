@@ -17,19 +17,19 @@
 
 /* Variables */
 :root {
-    --black: #eeeeea;
-    --white: #05080e;
-    --blur: #0000009c;
-    --accone: #d11c3d;
-    --acctwo: #FF9B21;
-}
-
-.dark-mode {
     --black: #05080e;
     --white: #eff0ef;
     --blur: #9debe727;
     --accone: #FF9B21;
     --acctwo: #5b8af0;
+}
+
+.dark-mode {
+    --black: #eeeeea;
+    --white: #05080e;
+    --blur: #0000009c;
+    --accone: #d11c3d;
+    --acctwo: #FF9B21;
 }
 
 /* Body */

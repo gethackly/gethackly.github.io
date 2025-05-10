@@ -4,6 +4,92 @@
     box-sizing: border-box;
 }
 
+.header {
+    text-align: center;
+    padding: 20px;
+}
+
+.how-to-use-btn {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.how-to-use-btn:hover {
+    background-color: #444;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+.close:hover {
+    color: #333;
+}
+
+.modal-content h2 {
+    color: #333;
+    margin-bottom: 20px;
+    padding-right: 30px;
+}
+
+.modal-content p {
+    margin: 15px 0;
+    color: #666;
+    line-height: 1.5;
+}
+
+.modal-content .metrics {
+    margin: 20px 0;
+}
+
+.modal-content .metrics p {
+    margin: 10px 0;
+}
+
+.modal-content .tips {
+    margin-top: 20px;
+    font-style: italic;
+    color: #444;
+}
+
 .how-to-use {
     margin: 20px;
     padding: 20px;
@@ -15,14 +101,13 @@
 .how-to-use h2 {
     color: #333;
     margin-bottom: 20px;
-    text-align: center;
+    font-size: 1.5em;
 }
 
 .how-to-use h3 {
     color: #444;
-    margin: 20px 0 15px 0;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+    margin: 15px 0 10px 0;
+    font-size: 1.2em;
 }
 
 .how-to-use h4 {
@@ -30,40 +115,31 @@
     margin: 15px 0 10px 0;
 }
 
-.metric-explanation {
+.how-to-use p {
     margin: 15px 0;
-    padding: 15px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.metric-explanation {
+    margin: 10px 0;
+    padding: 10px;
     background-color: #f9f9f9;
     border-radius: 2px;
 }
 
-.metric-explanation ul {
-    margin: 10px 0;
-    padding-left: 20px;
-}
-
-.metric-explanation li {
+.metric-explanation p {
     margin: 5px 0;
     color: #666;
 }
 
-.usage ol {
-    margin: 15px 0;
-    padding-left: 20px;
-}
-
-.usage li {
+.usage ol, .tips ul {
     margin: 10px 0;
-    color: #666;
-}
-
-.tips ul {
-    margin: 15px 0;
     padding-left: 20px;
 }
 
-.tips li {
-    margin: 8px 0;
+.usage li, .tips li {
+    margin: 5px 0;
     color: #666;
 }
 
@@ -134,4 +210,17 @@
 
 #docs-titlebar-container > div.docs-titlebar-buttons, #docs-header, #docs-menubars{
     display: block !important;
+}
+
+.metrics {
+    margin: 20px 0;
+}
+
+.metrics p {
+    margin: 10px 0;
+}
+
+.tips {
+    margin-top: 20px;
+    font-style: italic;
 }

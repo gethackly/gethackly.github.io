@@ -7,40 +7,28 @@
     <link rel="stylesheet" href="lab.css">
 </head>
 <body>
-    <div class="how-to-use">
-        <h2>How to Use</h2>
-        
-        <section class="usage">
-            <h3>Quick Guide</h3>
-            <ol>
-                <li>Write your prompt in the editor below</li>
-                <li>Use "===" to separate:
-                    <ul>
-                        <li>Before: Your requirements</li>
-                        <li>After: Expected output</li>
-                    </ul>
-                </li>
-                <li>Check your scores above</li>
-            </ol>
-        </section>
+    <div class="header">
+        <button id="howToUseBtn" class="how-to-use-btn">How to use it</button>
+    </div>
 
-        <section class="metrics">
-            <h3>Scores Explained</h3>
-            <div class="metric-explanation">
-                <p><strong>Accuracy (45%)</strong>: How well the output matches requirements</p>
-                <p><strong>Complexity (35%)</strong>: Technical depth and sophistication</p>
-                <p><strong>Reliability (20%)</strong>: Code quality and robustness</p>
+    <!-- Modal -->
+    <div id="howToUseModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Welcome to the Prompt Evaluation System</h2>
+            
+            <p>Write your prompts in the editor below. Use "===" to separate different prompts. (exemple "build a todo app with an apple design" is one prompt". "Build a todo app === Make it apple like" count as a chain of 2 prompt)</p>
+
+            <div class="metrics">
+                <p><strong>Accuracy.</strong> Evaluates how precise the prompt is by testing it across multiple AI models and comparing the consistency of their outputs.</p>
+
+                <p><strong>Complexity.</strong> Assesses the scope of the project described in the prompt, based on how challenging it would be to build.</p>
+
+                <p><strong>Reliability.</strong> Measures how well the prompt anticipates and addresses edge cases, errors, and robustness in the generated code.</p>
             </div>
-        </section>
 
-        <section class="tips">
-            <h3>Tips</h3>
-            <ul>
-                <li>Be specific in requirements</li>
-                <li>Include example outputs</li>
-                <li>Specify technical needs</li>
-            </ul>
-        </section>
+            <p class="tips">Pro tip: To increase the scores, Be specific and include code snippets to increase accuracy, add or detail features to increase complexity, and consider edge cases and error for better reliabilty.</p>
+        </div>
     </div>
 
     <div class="metrics-bar">
@@ -116,6 +104,25 @@
 
         // Initialize progress bars
         updateProgressBars();
+
+        // Modal functionality
+        const modal = document.getElementById("howToUseModal");
+        const btn = document.getElementById("howToUseBtn");
+        const span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
     <script src="app.js"></script>
 </body>

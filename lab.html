@@ -4,74 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prompt Evaluation Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="lab.css">
 </head>
 <body>
     <div class="how-to-use">
-        <h2>How to Use the Prompt Evaluation System</h2>
+        <h2>How to Use</h2>
         
-        <section class="concept">
-            <h3>Understanding the Evaluation Metrics</h3>
-            <div class="metric-explanation">
-                <h4>Accuracy (45% of total score)</h4>
-                <p>Measures how well the AI's response matches the requirements:</p>
-                <ul>
-                    <li>Semantic similarity between expected and actual outputs</li>
-                    <li>Completeness of the response</li>
-                    <li>Relevance to the prompt</li>
-                </ul>
-            </div>
-
-            <div class="metric-explanation">
-                <h4>Complexity (35% of total score)</h4>
-                <p>Evaluates the technical sophistication of the response:</p>
-                <ul>
-                    <li>Technical depth (OOP concepts, async operations, algorithms)</li>
-                    <li>Component complexity (functions, control structures, error handling)</li>
-                    <li>Integration complexity (dependencies, API endpoints, database operations)</li>
-                </ul>
-            </div>
-
-            <div class="metric-explanation">
-                <h4>Reliability (20% of total score)</h4>
-                <p>Assesses the robustness and quality of the code:</p>
-                <ul>
-                    <li>Error handling and security measures</li>
-                    <li>Test coverage and quality</li>
-                    <li>Edge case handling</li>
-                </ul>
-            </div>
-        </section>
-
         <section class="usage">
-            <h3>How to Evaluate Your Prompts</h3>
+            <h3>Quick Guide</h3>
             <ol>
-                <li>Write your prompt in the Google Doc editor below</li>
-                <li>Use the "===" separator to divide different parts of your prompt:
+                <li>Write your prompt in the editor below</li>
+                <li>Use "===" to separate:
                     <ul>
-                        <li>Before "===": Write your main prompt or requirements</li>
-                        <li>After "===": Write your expected output or example</li>
+                        <li>Before: Your requirements</li>
+                        <li>After: Expected output</li>
                     </ul>
                 </li>
-                <li>The system will automatically evaluate the prompt based on:
-                    <ul>
-                        <li>Clarity and specificity of requirements</li>
-                        <li>Technical depth and complexity</li>
-                        <li>Expected reliability and robustness</li>
-                    </ul>
-                </li>
-                <li>View your evaluation results in the metrics bar above</li>
+                <li>Check your scores above</li>
             </ol>
         </section>
 
+        <section class="metrics">
+            <h3>Scores Explained</h3>
+            <div class="metric-explanation">
+                <p><strong>Accuracy (45%)</strong>: How well the output matches requirements</p>
+                <p><strong>Complexity (35%)</strong>: Technical depth and sophistication</p>
+                <p><strong>Reliability (20%)</strong>: Code quality and robustness</p>
+            </div>
+        </section>
+
         <section class="tips">
-            <h3>Tips for Better Prompts</h3>
+            <h3>Tips</h3>
             <ul>
-                <li>Be specific about requirements and constraints</li>
-                <li>Include examples of expected outputs after the "===" separator</li>
-                <li>Specify technical requirements and frameworks</li>
-                <li>Mention any edge cases to consider</li>
-                <li>Define success criteria clearly</li>
+                <li>Be specific in requirements</li>
+                <li>Include example outputs</li>
+                <li>Specify technical needs</li>
             </ul>
         </section>
     </div>

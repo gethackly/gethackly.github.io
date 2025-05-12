@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prompt Evaluation Dashboard</title>
     <link rel="stylesheet" href="lab.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="header">
@@ -24,7 +25,7 @@
 
                 <p><strong>Complexity.</strong> Assesses the scope of the project described in the prompt, based on how challenging it would be to build.</p>
 
-                <p><strong>Reliability.</strong> Measures how well the prompt anticipates and addresses edge cases, errors, and robustness in the generated code.</p>
+                <p><strong>Reliability.</strong> Measures how well the prompt anticipates and addresses edge cases, errors, vulnerabilities and major security flaws.</p>
             </div>
 
             <p class="tips">Pro tip: To increase the scores, Be specific and include code snippets to increase accuracy, add or detail features to increase complexity, and consider edge cases and error for better reliabilty.</p>
@@ -69,36 +70,10 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <script>
-        function getColorForScore(score) {
-            if (score <= 30) {
-                // Red to Orange gradient (0-30)
-                const ratio = score / 30;
-                const r = 255;
-                const g = Math.round(165 * ratio);
-                const b = 0;
-                return `rgb(${r}, ${g}, ${b})`;
-            } else if (score <= 60) {
-                // Orange to Golden Yellow gradient (30-60)
-                const ratio = (score - 30) / 30;
-                const r = 255;
-                const g = Math.round(165 + (60 * ratio));
-                const b = 0;
-                return `rgb(${r}, ${g}, ${b})`;
-            } else {
-                // Golden Yellow to Green gradient (60-100)
-                const ratio = (score - 60) / 40;
-                const r = Math.round(255 * (1 - ratio));
-                const g = Math.round(225 + (30 * ratio));
-                const b = 0;
-                return `rgb(${r}, ${g}, ${b})`;
-            }
-        }
-
         function updateProgressBars() {
             document.querySelectorAll('.metric-bar-fill').forEach(bar => {
                 const score = parseFloat(bar.dataset.score);
                 bar.style.width = `${score}%`;
-                bar.style.backgroundColor = getColorForScore(score);
             });
         }
 

@@ -520,6 +520,10 @@ main {
     align-items: center;
 }
 
+.desktop_layout button {
+    border: double 3px;
+}
+
 /* Mobile layout */
 .mobile_layout {
     display: none;
@@ -723,6 +727,7 @@ main {
     background-color: var(--blurry-color);
     cursor: not-allowed;
 }
+
 .action_button:hover {
     background-color: var(--blurry-color);
 }

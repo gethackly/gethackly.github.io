@@ -1,4 +1,5 @@
-// Use window.db and window.auth instead of imports
+// Import Firebase services
+import { db, auth } from './firebase-config.js';
 
 // DOM Elements
 const ideaList = document.getElementById('idea_list');
@@ -26,10 +27,23 @@ let currentDocList = [];
 let currentDocIndex = -1;
 
 // Event Listeners
-document.addEventListener('DOMContentLoaded', () => {
-    initializeAccordion();
-    loadDocuments();
-    setupEventListeners();
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // Wait for Firebase to initialize
+        await new Promise((resolve) => {
+            const unsubscribe = auth.onAuthStateChanged((user) => {
+                unsubscribe();
+                resolve();
+            });
+        });
+
+        initializeAccordion();
+        await loadDocuments();
+        setupEventListeners();
+    } catch (error) {
+        console.error('Error initializing garage:', error);
+        loadingMessage.textContent = 'Error initializing application. Please refresh the page.';
+    }
 });
 
 function initializeAccordion() {
@@ -137,7 +151,7 @@ async function loadDocuments() {
         ideaList.innerHTML = '';
 
         // Fetch all documents
-        const snapshot = await window.db.collection('documents').get();
+        const snapshot = await db.collection('documents').get();
         let docs = [];
         snapshot.forEach(doc => {
             docs.push({ id: doc.id, ...doc.data() });
@@ -274,7 +288,7 @@ function openDocument(id, data) {
     }
 
     // Update modal subheader with evaluation (as before)
-    window.db.collection('documents').doc(id).get().then(docSnap => {
+    db.collection('documents').doc(id).get().then(docSnap => {
         let evalHTML = '<span style="font-size:1.1rem;font-weight:500;">';
         if (docSnap.exists && docSnap.data().aiEvaluation && docSnap.data().aiEvaluation.evaluation) {
             const evalData = docSnap.data().aiEvaluation.evaluation;
@@ -326,7 +340,7 @@ function openDocument(id, data) {
         docModal.addEventListener('click', handleModalClick);
         
         // Increment view count
-        window.db.collection('documents').doc(id).update({
+        db.collection('documents').doc(id).update({
             views: window.firebase.firestore.FieldValue.increment(1)
         }).catch(error => {
             console.error('Error updating view count:', error);
@@ -337,7 +351,7 @@ function openDocument(id, data) {
         if (generateTextBtn) {
             generateTextBtn.onclick = async () => {
                 try {
-                    await window.db.collection('documents').doc(id).update({
+                    await db.collection('documents').doc(id).update({
                         textFileRequested: true,
                         lastRequested: new Date(),
                         status: 'pending'
@@ -422,7 +436,7 @@ async function handleCreatePrompt(titleInput, submitButton) {
         const viewUrl = `https://docs.google.com/document/d/${data.docId}/preview?usp=drivesdk`;
 
         // Step 2: Only after successful Google Doc creation, save to Firestore
-        const docRef = await window.db.collection('documents').add({
+        const docRef = await db.collection('documents').add({
             title: title,
             docId: data.docId,
             googleDocWebViewUrl: viewUrl,
@@ -489,7 +503,7 @@ function updateSortIcons() {
 }
 
 function openEvalModal(type, docId) {
-    window.db.collection('documents').doc(docId).get().then(docSnap => {
+    db.collection('documents').doc(docId).get().then(docSnap => {
         if (docSnap.exists && docSnap.data().aiEvaluation && docSnap.data().aiEvaluation.evaluation) {
             const evalData = docSnap.data().aiEvaluation.evaluation;
             document.getElementById(`${type}_modal_content`).textContent = evalData[type] ?? 'This prompt has not yet been evaluated.';

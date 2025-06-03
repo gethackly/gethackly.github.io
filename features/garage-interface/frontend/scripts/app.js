@@ -1,3 +1,6 @@
+// Import Firebase services
+import { auth } from './firebase-config.js';
+
 // Main application initialization
 document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
@@ -5,8 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function initializeApp() {
     try {
+        // Wait for Firebase to initialize
+        await new Promise((resolve) => {
+            const unsubscribe = auth.onAuthStateChanged((user) => {
+                unsubscribe();
+                resolve();
+            });
+        });
+
         // Check authentication state
-        window.auth.onAuthStateChanged((user) => {
+        auth.onAuthStateChanged((user) => {
             if (user) {
                 // User is signed in
                 setupAuthenticatedUI(user);
@@ -25,6 +36,12 @@ async function initializeApp() {
 }
 
 function setupAuthenticatedUI(user) {
+    // Enable document creation
+    const createForms = document.querySelectorAll('#idea_form_desktop, #idea_form_mobile');
+    createForms.forEach(form => {
+        form.style.display = 'block';
+    });
+
     // Update UI for authenticated user
     const userElements = document.querySelectorAll('.user-info');
     userElements.forEach(element => {

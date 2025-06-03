@@ -287,24 +287,43 @@ function openDocument(id, data) {
         return;
     }
 
-    // Update modal subheader with evaluation (as before)
-    db.collection('documents').doc(id).get().then(docSnap => {
-        let evalHTML = '<span style="font-size:1.1rem;font-weight:500;">';
-        if (docSnap.exists && docSnap.data().aiEvaluation && docSnap.data().aiEvaluation.evaluation) {
-            const evalData = docSnap.data().aiEvaluation.evaluation;
-            evalHTML += `Accuracy: <b>${evalData.accuracy ?? '-'}</b> | `;
-            evalHTML += `Reliability: <b>${evalData.reliability ?? '-'}</b> | `;
-            evalHTML += `Complexity: <b>${evalData.complexity ?? '-'}</b> | `;
-            evalHTML += `Overall: <b>${evalData.overall ?? '-'}</b>`;
-        } else {
-            evalHTML += 'This prompt has not yet been evaluated.';
-        }
-        evalHTML += '</span>';
-        const docTitleElem = document.getElementById('doc_title');
-        if (docTitleElem) {
-            docTitleElem.innerHTML = evalHTML;
+    // Set up real-time listener for document updates
+    const unsubscribe = db.collection('documents').doc(id).onSnapshot(docSnap => {
+        if (docSnap.exists) {
+            const docData = docSnap.data();
+            let evalHTML = '<span style="font-size:1.1rem;font-weight:500;">';
+            if (docData.aiEvaluation && docData.aiEvaluation.evaluation) {
+                const evalData = docData.aiEvaluation.evaluation;
+                evalHTML += `Accuracy: <b>${evalData.accuracy ?? '-'}</b> | `;
+                evalHTML += `Reliability: <b>${evalData.reliability ?? '-'}</b> | `;
+                evalHTML += `Complexity: <b>${evalData.complexity ?? '-'}</b> | `;
+                evalHTML += `Overall: <b>${evalData.overall ?? '-'}</b>`;
+            } else {
+                evalHTML += 'This prompt has not yet been evaluated.';
+            }
+            evalHTML += '</span>';
+            const docTitleElem = document.getElementById('doc_title');
+            if (docTitleElem) {
+                docTitleElem.innerHTML = evalHTML;
+            }
+
+            // Update generate text button state based on document status
+            if (generateTextBtn) {
+                if (docData.textFileRequested) {
+                    generateTextBtn.disabled = true;
+                    generateTextBtn.title = 'Text file generation requested!';
+                    generateTextBtn.querySelector('.material-icons').textContent = 'check';
+                } else {
+                    generateTextBtn.disabled = false;
+                    generateTextBtn.title = 'Generate Text File';
+                    generateTextBtn.querySelector('.material-icons').textContent = 'description';
+                }
+            }
         }
     });
+
+    // Store the unsubscribe function to clean up when modal is closed
+    window.currentDocUnsubscribe = unsubscribe;
 
     // Navigation event listeners
     const prevBtn = document.getElementById('prev_doc_btn');
@@ -382,6 +401,12 @@ function handleModalClick(event) {
 function closeModal() {
     // Remove active class to trigger transition
     docModal.classList.remove('active');
+    
+    // Unsubscribe from document updates
+    if (window.currentDocUnsubscribe) {
+        window.currentDocUnsubscribe();
+        window.currentDocUnsubscribe = null;
+    }
     
     // Wait for transition to complete before hiding
     setTimeout(() => {

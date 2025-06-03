@@ -16,11 +16,12 @@
 /* Dark theme */
 [data-theme="dark"], .dark_mode {
     --text-color: #fff;
-    --background-color: #1a1a1a;
+    --background-color: #010409;
     --border-color: #333;
     --shadow-color: rgba(0, 0, 0, 0.3);
     --acc_one: #1e9991;
     --acc_two: #FF6B6B;
+    --primary-color: #010409;
 }
 
 /* Color theme */

@@ -1,4 +1,4 @@
-import { db, auth } from './firebase-config.js';
+// Use window.db and window.auth instead of imports
 
 // DOM Elements
 const ideaList = document.getElementById('idea_list');
@@ -137,7 +137,7 @@ async function loadDocuments() {
         ideaList.innerHTML = '';
 
         // Fetch all documents
-        const snapshot = await db.collection('documents').get();
+        const snapshot = await window.db.collection('documents').get();
         let docs = [];
         snapshot.forEach(doc => {
             docs.push({ id: doc.id, ...doc.data() });
@@ -274,7 +274,7 @@ function openDocument(id, data) {
     }
 
     // Update modal subheader with evaluation (as before)
-    db.collection('documents').doc(id).get().then(docSnap => {
+    window.db.collection('documents').doc(id).get().then(docSnap => {
         let evalHTML = '<span style="font-size:1.1rem;font-weight:500;">';
         if (docSnap.exists && docSnap.data().aiEvaluation && docSnap.data().aiEvaluation.evaluation) {
             const evalData = docSnap.data().aiEvaluation.evaluation;
@@ -326,8 +326,8 @@ function openDocument(id, data) {
         docModal.addEventListener('click', handleModalClick);
         
         // Increment view count
-        db.collection('documents').doc(id).update({
-            views: firebase.firestore.FieldValue.increment(1)
+        window.db.collection('documents').doc(id).update({
+            views: window.firebase.firestore.FieldValue.increment(1)
         }).catch(error => {
             console.error('Error updating view count:', error);
         });
@@ -337,7 +337,7 @@ function openDocument(id, data) {
         if (generateTextBtn) {
             generateTextBtn.onclick = async () => {
                 try {
-                    await db.collection('documents').doc(id).update({
+                    await window.db.collection('documents').doc(id).update({
                         textFileRequested: true,
                         lastRequested: new Date(),
                         status: 'pending'
@@ -422,7 +422,7 @@ async function handleCreatePrompt(titleInput, submitButton) {
         const viewUrl = `https://docs.google.com/document/d/${data.docId}/preview?usp=drivesdk`;
 
         // Step 2: Only after successful Google Doc creation, save to Firestore
-        const docRef = await db.collection('documents').add({
+        const docRef = await window.db.collection('documents').add({
             title: title,
             docId: data.docId,
             googleDocWebViewUrl: viewUrl,
@@ -489,7 +489,7 @@ function updateSortIcons() {
 }
 
 function openEvalModal(type, docId) {
-    db.collection('documents').doc(docId).get().then(docSnap => {
+    window.db.collection('documents').doc(docId).get().then(docSnap => {
         if (docSnap.exists && docSnap.data().aiEvaluation && docSnap.data().aiEvaluation.evaluation) {
             const evalData = docSnap.data().aiEvaluation.evaluation;
             document.getElementById(`${type}_modal_content`).textContent = evalData[type] ?? 'This prompt has not yet been evaluated.';

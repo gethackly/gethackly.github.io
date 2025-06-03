@@ -22,7 +22,7 @@ jobs:
       - name: Build
         run: |
           npm run build
-          mkdir -p dist/scripts
+          mkdir -p dist/features/garage-interface/frontend/scripts
           echo "const firebaseConfig = {
             apiKey: '${{ secrets.FIREBASE_API_KEY }}',
             authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}',
@@ -31,7 +31,7 @@ jobs:
             messagingSenderId: '${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}',
             appId: '${{ secrets.FIREBASE_APP_ID }}',
             measurementId: '${{ secrets.FIREBASE_MEASUREMENT_ID }}'
-          };" > dist/scripts/config.js
+          };" > dist/features/garage-interface/frontend/scripts/config.js
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

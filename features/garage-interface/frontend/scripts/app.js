@@ -1,5 +1,3 @@
-import { db, auth } from './firebase-config.js';
-
 // Main application initialization
 document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
@@ -8,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function initializeApp() {
     try {
         // Check authentication state
-        auth.onAuthStateChanged((user) => {
+        window.auth.onAuthStateChanged((user) => {
             if (user) {
                 // User is signed in
                 setupAuthenticatedUI(user);
@@ -112,10 +110,8 @@ function showError(message) {
     }, 5000);
 }
 
-// Export functions for use in other modules
-export {
-    initializeApp,
-    setupAuthenticatedUI,
-    setupUnauthenticatedUI,
-    showError
-}; 
+// Export functions for use in other modules (if needed, attach to window)
+window.initializeApp = initializeApp;
+window.setupAuthenticatedUI = setupAuthenticatedUI;
+window.setupUnauthenticatedUI = setupUnauthenticatedUI;
+window.showError = showError; 

@@ -268,8 +268,8 @@ function openDocument(id, data) {
     const generateTextBtn = document.getElementById('generate_text_btn');
     if (generateTextBtn) {
         generateTextBtn.disabled = false;
-        generateTextBtn.title = 'Generate Text File';
-        generateTextBtn.querySelector('.material-icons').textContent = 'description';
+        generateTextBtn.title = 'Evaluate Prompt';
+        generateTextBtn.textContent = 'Evaluate';
     }
 
     // Construct the edit URL using the Drive SDK format

@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Set theme function
-function setTheme(theme) {
+window.setTheme = function(theme) {
     const themes = ["dark_mode", "green", "red", "blue"];
     const colorThemes = ["green", "red", "blue"]; // Themes for random selection
     

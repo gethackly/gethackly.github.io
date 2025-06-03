@@ -706,7 +706,6 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
     transition: background-color var(--transition-fast);
     font-size: 14px;
     min-width: 80px;

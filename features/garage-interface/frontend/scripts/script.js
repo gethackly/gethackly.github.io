@@ -16,6 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (savedTheme !== "light") {
         document.body.classList.add(savedTheme);
     }
+    // Always set the correct theme variables for light mode
+    if (savedTheme === "light") {
+        document.documentElement.className = '';
+    }
 
     // Add click event listener to the theme button
     const themeButton = document.querySelector('.theme');
@@ -49,32 +53,25 @@ document.addEventListener("DOMContentLoaded", function () {
 // Set theme function
 window.setTheme = function(theme) {
     const themes = ["dark_mode", "green", "red", "blue"];
-    const colorThemes = ["green", "red", "blue"]; // Themes for random selection
-    
+    const colorThemes = ["green", "red", "blue"];
     // Remove all themes first
     themes.forEach(t => document.body.classList.remove(t));
     document.documentElement.removeAttribute('data-theme');
-    
     if (theme === "light") {
         localStorage.setItem("selectedTheme", "light");
+        document.documentElement.className = '';
     } else if (theme === "dark") {
         document.body.classList.add("dark_mode");
         document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem("selectedTheme", "dark_mode");
     } else if (theme === "random") {
-        // Get current theme
         const currentTheme = localStorage.getItem("selectedTheme");
-        
-        // Filter out the current theme from available color themes
         const availableThemes = colorThemes.filter(t => t !== currentTheme);
-        
-        // Select random theme from remaining options
         const randomTheme = availableThemes[Math.floor(Math.random() * availableThemes.length)];
         document.body.classList.add(randomTheme);
         document.documentElement.setAttribute('data-theme', 'color');
         localStorage.setItem("selectedTheme", randomTheme);
     }
-    
     // Close the dropdown
     const dropdown = document.getElementById("themeDropdown");
     if (dropdown) {
@@ -92,5 +89,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initialize theme
-    setTheme(localStorage.getItem("selectedTheme"));
+    setTheme(localStorage.getItem("selectedTheme") || "light");
 }); 

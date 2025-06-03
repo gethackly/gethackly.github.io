@@ -75,6 +75,7 @@
     --texture-size: 20px;
     --texture-color: rgba(0, 0, 0, 0.02);
 }
+
 /* Body */
 body {
     min-width: 300px;

@@ -31,7 +31,8 @@ jobs:
             messagingSenderId: '${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}',
             appId: '${{ secrets.FIREBASE_APP_ID }}',
             measurementId: '${{ secrets.FIREBASE_MEASUREMENT_ID }}'
-          };" > dist/features/garage-interface/frontend/scripts/config.js
+          };
+          export { firebaseConfig };" > dist/features/garage-interface/frontend/scripts/config.js
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

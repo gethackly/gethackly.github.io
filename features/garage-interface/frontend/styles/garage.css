@@ -704,8 +704,25 @@ main {
     justify-content: center;
     border-radius: 50%;
     transition: background-color var(--transition-fast);
+    font-size: 14px;
+    min-width: 80px;
 }
 
+#generate_text_btn {
+    border-radius: 4px;
+    background-color: var(--acc_one);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+}
+
+#generate_text_btn:hover {
+    background-color: var(--acc_two);
+}
+
+#generate_text_btn:disabled {
+    background-color: var(--blurry-color);
+    cursor: not-allowed;
+}
 .action_button:hover {
     background-color: var(--blurry-color);
 }

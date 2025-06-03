@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # or your default branch
+      - main
 
 jobs:
   deploy:
@@ -21,15 +21,20 @@ jobs:
         
       - name: Build
         run: |
+          echo "Starting build process..."
+          
           # Create dist directory with the correct structure
           mkdir -p dist/features/garage-interface/frontend/scripts
+          echo "Created dist directory structure"
           
           # Copy frontend files maintaining the structure
           cp -r features/garage-interface/frontend/* dist/features/garage-interface/frontend/
+          echo "Copied frontend files"
           
           # Create config.js with proper exports
+          echo "Creating config.js..."
           cat > dist/features/garage-interface/frontend/scripts/config.js << EOL
-          const firebaseConfig = {
+          export const firebaseConfig = {
             apiKey: '${{ secrets.FIREBASE_API_KEY }}',
             authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}',
             projectId: '${{ secrets.FIREBASE_PROJECT_ID }}',
@@ -38,12 +43,34 @@ jobs:
             appId: '${{ secrets.FIREBASE_APP_ID }}',
             measurementId: '${{ secrets.FIREBASE_MEASUREMENT_ID }}'
           };
-          export { firebaseConfig };
           EOL
+          
+          # Verify config.js was created and has content
+          if [ ! -f dist/features/garage-interface/frontend/scripts/config.js ]; then
+            echo "Error: config.js was not created"
+            exit 1
+          fi
+          
+          # Verify the structure of the dist directory
+          echo "Verifying dist directory structure..."
+          ls -R dist/features/garage-interface/frontend/
+          
+          # Verify config.js content (without exposing secrets)
+          echo "Verifying config.js structure..."
+          if ! grep -q "export const firebaseConfig" dist/features/garage-interface/frontend/scripts/config.js; then
+            echo "Error: config.js does not contain the expected export"
+            exit 1
+          fi
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          force_orphan: true 
+          force_orphan: true
+          
+      - name: Verify Deployment
+        run: |
+          echo "Deployment completed. Please check your GitHub Pages URL."
+          echo "Note: It may take a few minutes for changes to be visible."
+          echo "You can check the deployment status at: https://github.com/${{ github.repository }}/deployments" 

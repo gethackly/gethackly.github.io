@@ -21,17 +21,14 @@ jobs:
         
       - name: Build
         run: |
-          # Create dist directory
-          mkdir -p dist
+          # Create dist directory with the correct structure
+          mkdir -p dist/features/garage-interface/frontend/scripts
           
-          # Copy frontend files
-          cp -r features/garage-interface/frontend/* dist/
-          
-          # Create scripts directory if it doesn't exist
-          mkdir -p dist/scripts
+          # Copy frontend files maintaining the structure
+          cp -r features/garage-interface/frontend/* dist/features/garage-interface/frontend/
           
           # Create config.js with proper exports
-          cat > dist/scripts/config.js << EOL
+          cat > dist/features/garage-interface/frontend/scripts/config.js << EOL
           const firebaseConfig = {
             apiKey: '${{ secrets.FIREBASE_API_KEY }}',
             authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}',

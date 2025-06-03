@@ -1,11 +1,10 @@
-// Firebase configuration will be injected during build
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+// Assumes config.js is loaded before this file and provides `firebaseConfig`
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
+// Initialize Firebase using the CDN global
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const auth = firebase.auth();
 
-export { db, auth }; 
+// If you need to use db and auth elsewhere, attach to window (optional)
+window.db = db;
+window.auth = auth; 

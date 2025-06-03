@@ -713,10 +713,10 @@ main {
 }
 
 #generate_text_btn {
-    border-radius: 4px;
     background-color: var(--acc_one);
     color: var(--white);
     padding: 0.5rem 1rem;
+    border: double 3px;
 }
 
 #generate_text_btn:hover {

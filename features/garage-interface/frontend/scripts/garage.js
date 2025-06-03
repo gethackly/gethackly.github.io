@@ -311,12 +311,12 @@ function openDocument(id, data) {
             if (generateTextBtn) {
                 if (docData.textFileRequested) {
                     generateTextBtn.disabled = true;
-                    generateTextBtn.title = 'Text file generation requested!';
-                    generateTextBtn.querySelector('.material-icons').textContent = 'check';
+                    generateTextBtn.title = 'Evaluation in progress...';
+                    generateTextBtn.textContent = 'Evaluating...';
                 } else {
                     generateTextBtn.disabled = false;
-                    generateTextBtn.title = 'Generate Text File';
-                    generateTextBtn.querySelector('.material-icons').textContent = 'description';
+                    generateTextBtn.title = 'Evaluate Prompt';
+                    generateTextBtn.textContent = 'Evaluate';
                 }
             }
         }
@@ -376,10 +376,10 @@ function openDocument(id, data) {
                         status: 'pending'
                     });
                     generateTextBtn.disabled = true;
-                    generateTextBtn.title = 'Text file generation requested!';
-                    generateTextBtn.querySelector('.material-icons').textContent = 'check';
+                    generateTextBtn.title = 'Evaluation in progress...';
+                    generateTextBtn.textContent = 'Evaluating...';
                 } catch (err) {
-                    alert('Failed to request text file generation.');
+                    alert('Failed to request evaluation.');
                     console.error(err);
                 }
             };

@@ -293,3 +293,8 @@ nav {
     }
 }
 
+/* Remove the loading spinner styles */
+.loading-spinner {
+    display: none;
+}
+

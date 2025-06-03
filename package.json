@@ -8,7 +8,6 @@
   },
   "homepage": "https://gethackly.github.io",
   "scripts": {
-    "build": "mkdir -p dist && cp -r features/garage-interface/frontend/* dist/",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

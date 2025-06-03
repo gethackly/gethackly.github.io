@@ -21,9 +21,18 @@ jobs:
         
       - name: Build
         run: |
-          npm run build
-          mkdir -p dist/features/garage-interface/frontend/scripts
-          echo "const firebaseConfig = {
+          # Create dist directory
+          mkdir -p dist
+          
+          # Copy frontend files
+          cp -r features/garage-interface/frontend/* dist/
+          
+          # Create scripts directory if it doesn't exist
+          mkdir -p dist/scripts
+          
+          # Create config.js with proper exports
+          cat > dist/scripts/config.js << EOL
+          const firebaseConfig = {
             apiKey: '${{ secrets.FIREBASE_API_KEY }}',
             authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}',
             projectId: '${{ secrets.FIREBASE_PROJECT_ID }}',
@@ -32,7 +41,8 @@ jobs:
             appId: '${{ secrets.FIREBASE_APP_ID }}',
             measurementId: '${{ secrets.FIREBASE_MEASUREMENT_ID }}'
           };
-          export { firebaseConfig };" > dist/features/garage-interface/frontend/scripts/config.js
+          export { firebaseConfig };
+          EOL
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

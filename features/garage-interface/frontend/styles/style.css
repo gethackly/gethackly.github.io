@@ -20,62 +20,61 @@
     --black: #232323;
     --white: #f8f8f2;
     --primary: #f5f5f7;
-    --acc_one: #FF6B6B;
-    --acc_two: #4ECDC4;
+    --acc_one: #4ECDC4;
+    --acc_two: #6B8EFF;
     --blur: #ffffffb9;
     --texture: linear-gradient(var(--texture-color) 1px, transparent 1px), linear-gradient(90deg, var(--texture-color) 1px, transparent 1px);
     --texture-size: 20px;
-    --texture-color: rgba(0, 0, 0, 0.05);
+    --texture-color: rgba(0, 0, 0, 0.03);
 }
 
 .dark_mode {
     --black: #E0E0E0;
-    --white: #282A2B;
-    --primary: #1b1b1b;
+    --white: #151B23;
+    --primary: #010409;
     --blur: #0000009c;
-    --acc_one: #FF9F1C;
+    --acc_one: #238636;
     --acc_two: #2EC4B6;
     --texture: linear-gradient(var(--texture-color) 1px, transparent 1px), linear-gradient(90deg, var(--texture-color) 1px, transparent 1px);
     --texture-size: 20px;
-    --texture-color: rgba(255, 255, 255, 0.05);
+    --texture-color: rgba(255, 255, 255, 0.03);
 }
 
 .green {
     --black: #2D3047;
     --white: #F7F7F7;
     --primary: #E0F2E9;
-    --acc_one: #FF6B6B;
-    --acc_two: #4ECDC4;
+    --acc_one: #4ECDC4;
+    --acc_two: #6B8EFF;
     --blur: #E0F2E99c;
     --texture: linear-gradient(var(--texture-color) 1px, transparent 1px), linear-gradient(90deg, var(--texture-color) 1px, transparent 1px);
     --texture-size: 20px;
-    --texture-color: rgba(0, 0, 0, 0.03);
+    --texture-color: rgba(0, 0, 0, 0.02);
 }
 
 .red {
     --black: #2D3047;
     --white: #F7F7F7;
     --primary: #FFE5D4;
-    --acc_one: #2EC4B6;
-    --acc_two: #FF6B6B;
+    --acc_one: #4ECDC4;
+    --acc_two: #6B8EFF;
     --blur: #FFE5D49c;
     --texture: linear-gradient(var(--texture-color) 1px, transparent 1px), linear-gradient(90deg, var(--texture-color) 1px, transparent 1px);
     --texture-size: 20px;
-    --texture-color: rgba(0, 0, 0, 0.03);
+    --texture-color: rgba(0, 0, 0, 0.02);
 }
 
 .blue {
     --black: #2D3047;
     --white: #F7F7F7;
     --primary: #E0F2F7;
-    --acc_one: #FF9F1C;
-    --acc_two: #2EC4B6;
+    --acc_one: #4ECDC4;
+    --acc_two: #6B8EFF;
     --blur: #E0F2F79c;
     --texture: linear-gradient(var(--texture-color) 1px, transparent 1px), linear-gradient(90deg, var(--texture-color) 1px, transparent 1px);
     --texture-size: 20px;
-    --texture-color: rgba(0, 0, 0, 0.03);
+    --texture-color: rgba(0, 0, 0, 0.02);
 }
-
 /* Body */
 body {
     min-width: 300px;

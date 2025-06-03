@@ -53,11 +53,13 @@ function setTheme(theme) {
     
     // Remove all themes first
     themes.forEach(t => document.body.classList.remove(t));
+    document.documentElement.removeAttribute('data-theme');
     
     if (theme === "light") {
         localStorage.setItem("selectedTheme", "light");
     } else if (theme === "dark") {
         document.body.classList.add("dark_mode");
+        document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem("selectedTheme", "dark_mode");
     } else if (theme === "random") {
         // Get current theme
@@ -69,6 +71,7 @@ function setTheme(theme) {
         // Select random theme from remaining options
         const randomTheme = availableThemes[Math.floor(Math.random() * availableThemes.length)];
         document.body.classList.add(randomTheme);
+        document.documentElement.setAttribute('data-theme', 'color');
         localStorage.setItem("selectedTheme", randomTheme);
     }
     

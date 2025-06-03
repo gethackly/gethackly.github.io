@@ -22,7 +22,7 @@ jobs:
       - name: Build
         run: |
           npm run build
-          # Create a config.js file with Firebase config
+          mkdir -p dist/scripts
           echo "const firebaseConfig = {
             apiKey: '${{ secrets.FIREBASE_API_KEY }}',
             authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}',

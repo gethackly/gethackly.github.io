@@ -1,0 +1,5 @@
+google-cloud-firestore==2.13.1
+google-api-python-client==2.108.0
+google-auth==2.23.4
+firebase-admin
+openai==1.12.0 

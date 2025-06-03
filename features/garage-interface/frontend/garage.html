@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackly - The Garage</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/garage.css">
+    <!-- Firebase CDN -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="scripts/firebase-config.js" type="module"></script>
+    <script src="scripts/script.js" defer></script>
+    <script src="scripts/garage.js" type="module" defer></script>
+    <script src="scripts/tabSystem.js" defer></script>
+    <script src="scripts/app.js" type="module" defer></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="nav_content">
+            <p><strong class="logo"><a href="https://hackly.tech/">Hackly</a></strong></p>
+            <span class="nav_right">
+                <ul>
+                    <li id="nav_cta"><a href="https://discord.gg/93SC6pFChu">Discord</a></li>
+                    <li class="theme_dropdown">
+                        <button class="theme">
+                            <span class="material-icons md-48">contrast</span>
+                        </button>
+                        <div id="themeDropdown" class="theme_dropdown_content">
+                            <button onclick="setTheme('light')">Light</button>
+                            <button onclick="setTheme('dark')">Dark</button>
+                            <button onclick="setTheme('random')">Color</button>
+                        </div>
+                    </li>
+                </ul>
+            </span>
+        </div>
+    </nav>
+    <main>
+        <div class="main_content">
+            <!-- MAIN CONTENT LEFT -->
+            <div class="main_content_left">
+                <div class="main_content_left_box">
+                    <div class="main_content_left_tabs">
+                        <button class="tab_link active" data-tab="resources_tab" id="resources_tab_button">Resources</button>
+                        <button class="tab_link" data-tab="create_tab" id="create_tab_button">+ New Prompt</button>
+                    </div>
+                    <div class="main_content_left_box_container">
+                        <div id="create_tab" class="tab_content">
+                            <div id="idea_form_desktop">
+                                <input type="text" id="title_desktop" placeholder="Prompt title" maxlength="60">
+                                <button id="submit_idea_desktop">Create Prompt</button>
+                            </div>
+                        </div>
+                        <div id="resources_tab" class="tab_content">
+                            <ul>
+                                <li><a href="#">Ressource number 1<span class="material-icons">open_in_new</span></a></li>
+                                <li><a href="#">Anoter Ressource number 2<span class="material-icons">open_in_new</span></a></li>
+                                <li><a href="#">Ressource number 3  again<span class="material-icons">open_in_new</span></a></li>
+                            </ul>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- MAIN CONTENT RIGHT -->
+            <div class="main_content_right">
+                <div class="idea_count">
+                    <p class="small_text">If you can dream it, we can do it.</p>
+                    <h1 id="ideas_count">Loading up the garage...</h1>
+                    <div class="accordion mobile_layout">
+                        <button class="accordion_button">Add a new prompt<span class="material-icons">keyboard_arrow_down</span></button>
+                        <div class="accordion_content">
+                            <div class="tab_content">
+                                <div id="idea_form_mobile">
+                                    <input type="text" id="title_mobile" placeholder="Prompt title">
+                                    <button id="submit_idea_mobile">Create</button>
+                                </div>
+                            </div>
+                            <div class="tab_content active">
+                                <ul>
+                                    <li><a href="#">Romain Lartigue, Managing Director<span class="material-icons">open_in_new</span></a></li>
+                                    <li><a href="#">Ed Davis, Director of Client Services<span class="material-icons">open_in_new</span></a></li>
+                                    <li><a href="#">Ron Peterson, Managing Partner<span class="material-icons">open_in_new</span></a></li>
+                                </ul>    
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="search_and_sort">
+                    <!-- Desktop layout -->
+                    <ul class="desktop_layout">
+                        <li>
+                            <button class="sort_button sort_by_date">
+                                Date
+                                <span class="material-icons sort_icon">unfold_more</span>
+                            </button>
+                        </li>
+                        <li class="search_list">
+                            <input type="text" placeholder="Search prompts..." class="search_input">
+                        </li>
+                        <li>
+                            <button class="sort_button sort_by_rank">
+                                Rank
+                                <span class="material-icons sort_icon">unfold_more</span>
+                            </button>
+                        </li>
+                    </ul>
+                    <!-- Mobile layout -->
+                    <ul class="mobile_layout">
+                        <li class="search_list">
+                            <input type="text" placeholder="Search prompts..." class="search_input">
+                        </li>
+                        <li class="sort_buttons_container">
+                            <button class="sort_button sort_by_date">
+                                Date
+                                <span class="material-icons sort_icon">unfold_more</span>
+                            </button>
+                            <button class="sort_button sort_by_rank">
+                                Rank
+                                <span class="material-icons sort_icon">unfold_more</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="idea_list_content">
+                    <ul id="idea_list" class="idea_list_item">
+                        <li id="loading_message">...</li>
+                    </ul>
+                </div>
+                <div class="pagination">
+                    <button class="pagination_button" id="prev_page">
+                        <span class="material-icons">chevron_left</span>
+                    </button>
+                    <span class="page_info">Page <span id="current_page">1</span></span>
+                    <button class="pagination_button" id="next_page">
+                        <span class="material-icons">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--MODALS-->
+    <article>
+        <div id="doc_modal" class="modal">
+            <div class="modal_content">
+                <div class="doc_navbar">
+                    <a href="" id="close_doc_modal">
+                        <span class="material-icons">close</span>
+                    </a>
+                </div>
+                <div class="doc_subheader">
+                    <h2 id="doc_title">Document Title</h2>
+                    <div class="doc_actions">
+                        <button class="action_button" id="generate_text_btn" title="Generate Text File">
+                            <span class="material-icons">description</span>
+                        </button>
+                        <button class="action_button">
+                            <span class="material-icons">share</span>
+                        </button>
+                        <button class="action_button">
+                            <span class="material-icons">more_vert</span>
+                        </button>
+                        <button class="action_button" id="prev_doc_btn" title="Previous Prompt">
+                            <span class="material-icons">chevron_left</span>
+                        </button>
+                        <button class="action_button" id="next_doc_btn" title="Next Prompt">
+                            <span class="material-icons">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+                <iframe id="doc_iframe" 
+                        width="100%" 
+                        height="100%" 
+                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                        referrerpolicy="no-referrer"
+                        allow="clipboard-read; clipboard-write">
+                </iframe>
+            </div>
+        </div>
+    </article>
+    <!-- Evaluation Modals -->
+    <div id="accuracy-modal" class="eval-modal" style="display:none;">
+        <div class="eval-modal-content">
+            <button class="close-eval-modal" data-modal="accuracy-modal">&times;</button>
+            <h3>Accuracy</h3>
+            <div id="accuracy_modal_content"></div>
+        </div>
+    </div>
+    <div id="reliability-modal" class="eval-modal" style="display:none;">
+        <div class="eval-modal-content">
+            <button class="close-eval-modal" data-modal="reliability-modal">&times;</button>
+            <h3>Reliability</h3>
+            <div id="reliability_modal_content"></div>
+        </div>
+    </div>
+    <div id="complexity-modal" class="eval-modal" style="display:none;">
+        <div class="eval-modal-content">
+            <button class="close-eval-modal" data-modal="complexity-modal">&times;</button>
+            <h3>Complexity</h3>
+            <div id="complexity_modal_content"></div>
+        </div>
+    </div>
+    <div id="overall-modal" class="eval-modal" style="display:none;">
+        <div class="eval-modal-content">
+            <button class="close-eval-modal" data-modal="overall-modal">&times;</button>
+            <h3>Overall</h3>
+            <div id="overall_modal_content"></div>
+        </div>
+    </div>
+</body>
+</html> 

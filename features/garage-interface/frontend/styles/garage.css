@@ -912,6 +912,10 @@ main {
         flex-direction: column;
         gap: 10px;
     }
+
+    #mobile_add_prompt {
+        display: none !important;
+    }
 }
 
 #idea_form_mobile {

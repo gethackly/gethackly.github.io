@@ -473,6 +473,42 @@ async function handleCreatePrompt(titleInput, submitButton) {
 
         console.log('Document saved to Firestore with ID:', docRef.id);
 
+        // Send Discord notification
+        try {
+            const webhookUrl = window.config.discordWebhookUrl;
+            if (webhookUrl) {
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        embeds: [{
+                            title: 'New Prompt Created',
+                            description: `A new prompt "${title}" has been created.`,
+                            color: 0x00ff00,
+                            fields: [
+                                {
+                                    name: 'View Prompt',
+                                    value: viewUrl,
+                                    inline: true
+                                },
+                                {
+                                    name: 'Edit Prompt',
+                                    value: editUrl,
+                                    inline: true
+                                }
+                            ],
+                            timestamp: new Date().toISOString()
+                        }]
+                    })
+                });
+            }
+        } catch (webhookError) {
+            console.error('Failed to send Discord notification:', webhookError);
+            // Don't throw the error - we don't want to fail the whole operation if the webhook fails
+        }
+
         // Clear the input
         titleInput.value = '';
         

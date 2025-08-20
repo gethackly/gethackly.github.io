@@ -26,11 +26,11 @@
 }
 
 .dark-mode {
-    --black: #cec9c9;
-    --white: #22262c;
-    --blur: #22262cb9;
-    --accone: #aa001f;
-    --acctwo: #8d021c;
+    --black: #c1c1c7;
+    --white: #010409;
+    --blur: #3d444d;
+    --accone: #1a81ff;
+    --acctwo: #1a81ff;
 }
 
 @keyframes fadeIn {

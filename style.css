@@ -28,9 +28,9 @@
 .dark-mode {
     --black: #c1c1c7;
     --white: #010409;
-    --blur: #3d444d;
-    --accone: #1a81ff;
-    --acctwo: #1a81ff;
+    --blur: #080319;
+    --accone: #C73E1D;
+    --acctwo: #C73E1D;
 }
 
 @keyframes fadeIn {

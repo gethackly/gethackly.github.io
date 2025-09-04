@@ -9,16 +9,16 @@ class AuthService {
 			// Set up auth state listener
 	firebase.auth().onAuthStateChanged(async (user) => {
 		if (user) {
+			// Don't notify listeners yet - wait for Firestore data to load
 			try {
 				const db = firebase.firestore();
 				const userRef = db.collection('users').doc(user.uid);
 				const userDoc = await userRef.get();
 
 				if (userDoc.exists) {
-
 					const userData = userDoc.data();
 					// Enhance user object with Firestore data - prioritize githubUsername
-					user.username = userData.githubUsername || userData.username || user.username;
+					user.username = userData.githubUsername || userData.username || user.displayName || 'user';
 					// Note: Cannot set displayName directly on user object as it's read-only
 				} else {
 					// User is authenticated, but no user document exists. Create one.
@@ -27,16 +27,17 @@ class AuthService {
 					// Determine the best possible username from the auth object
 					let username = user.displayName; // From Google/GitHub display name
 					
-					// For GitHub users, prioritize the display name (which is usually the username)
+					// For GitHub users, try to get a better username
 					const githubProvider = user.providerData.find(p => p.providerId === 'github.com');
 					if (githubProvider) {
-						// Use GitHub displayName (username) - avoid using uid as it's numeric
+						// Use displayName if available, otherwise fall back to email prefix
 						username = githubProvider.displayName || username;
 					}
 					
-					// If still no username, use a generic fallback instead of email
-					if (!username) {
-						username = 'user';
+					// If still no good username, try email prefix
+					if (!username || username === user.displayName) {
+						const emailPrefix = user.email ? user.email.split('@')[0] : null;
+						username = emailPrefix || 'user';
 					}
 
 					const newUserPayload = {
@@ -50,16 +51,23 @@ class AuthService {
 					
 					// Enhance the user object with the new data
 					user.username = username;
-					
-					// Notify listeners again with updated username
-					this.notifyAuthStateListeners(user);
 				}
+				
+				// Now that we have the complete user data, notify listeners
+				this.currentUser = user;
+				this.notifyAuthStateListeners(user);
+				
 			} catch (error) {
 				console.error('❌ AuthService: Error handling user document:', error);
+				// Even if there's an error, still notify with basic user data
+				this.currentUser = user;
+				this.notifyAuthStateListeners(user);
 			}
+		} else {
+			// User signed out - notify immediately
+			this.currentUser = null;
+			this.notifyAuthStateListeners(null);
 		}
-		this.currentUser = user;
-		this.notifyAuthStateListeners(user);
 	});
 	}
 

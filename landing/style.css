@@ -169,7 +169,11 @@ nav {
 
 #nav_cta{
     background-color: var(--black);
-    color: var(--white);
+    color: var(--white) !important;
+}
+
+#nav_cta a{
+    color: var(--white) !important;
 }
 
 #nav_cta:hover{
@@ -178,6 +182,9 @@ nav {
     transition: background-color 0.25s, color 0.25s;
 }
 
+#nav_cta:hover a{
+    color: var(--black) !important;
+}
 
 .nav_right ul li a{
     text-wrap: nowrap;

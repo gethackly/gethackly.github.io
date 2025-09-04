@@ -75,11 +75,32 @@ class MainAuth {
         if (user) {
             // Check if username is still being loaded (undefined or loading)
             if (!user.username || user.username === 'user') {
-                // Show loading state while username is being determined
+                // Show just the profile picture without text while username is being determined
+                const hasPhoto = user.photoURL || user.avatar_url;
                 btn.innerHTML = `
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <div class="auth-spinner"></div>
-                        <span>Loading...</span>
+                        ${hasPhoto ? 
+                            `<img src="${hasPhoto}" alt="Profile" style="
+                                width: 20px; 
+                                height: 20px; 
+                                border-radius: 50%; 
+                                border: 1px solid var(--color-text);
+                                object-fit: cover;
+                            ">` : 
+                            `<div style="
+                                width: 20px; 
+                                height: 20px; 
+                                background: var(--color-text); 
+                                color: var(--color-bg); 
+                                border-radius: 50%; 
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center; 
+                                font-weight: bold; 
+                                font-size: 12px; 
+                                text-transform: uppercase;
+                            ">?</div>`
+                        }
                     </div>
                 `;
                 return;

@@ -27,11 +27,11 @@ class AuthService {
 					// Determine the best possible username from the auth object
 					let username = user.displayName; // From Google/GitHub display name
 					
-					// For GitHub users, prioritize the login username
+					// For GitHub users, prioritize the display name (which is usually the username)
 					const githubProvider = user.providerData.find(p => p.providerId === 'github.com');
 					if (githubProvider) {
-						// Use GitHub login as username (most reliable)
-						username = githubProvider.uid || githubProvider.displayName || username;
+						// Use GitHub displayName (username) - avoid using uid as it's numeric
+						username = githubProvider.displayName || username;
 					}
 					
 					// If still no username, use a generic fallback instead of email
@@ -50,6 +50,9 @@ class AuthService {
 					
 					// Enhance the user object with the new data
 					user.username = username;
+					
+					// Notify listeners again with updated username
+					this.notifyAuthStateListeners(user);
 				}
 			} catch (error) {
 				console.error('❌ AuthService: Error handling user document:', error);

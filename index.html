@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://img.freepik.com/vecteurs-libre/conception-motif-damier-design-plat_23-2149629438.jpg" type="image/png">
+    <title>About Hackly</title>
+    <link rel="stylesheet" href="landing/style.css">
+    
+    <!-- Load config first and without defer -->
+    <script src="config.js"></script>
+    
+    <script src="landing/script.js" defer></script>
+    <script src="landing/firebase-config.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="nav_content">
+            <p><strong class="logo"><a href="#header">Hackly</a></strong></p>
+            <span class="nav_right">
+                <ul>
+                    <li id="nav_cta"><a href="https://discord.gg/93SC6pFChu">Discord</a></li>
+                    <button onclick="myFunction()" class="theme"><li class="theme_button"><span class="material-icons md-48 theme-icon">dark_mode</span></li></button>
+                </ul>
+            </span>
+        </div>
+    </nav>
+
+    <div class="seconde_nav">
+        <p>Our first pilot project is ongoing while we search for our first sponsor. Already <span class="branch-count">X</span> project created. <a href="https://hackly.tech/garage/" class="see-more">See more <span class="material-icons">chevron_right</span></a></p>
+    </div>
+
+    <header id="header">
+        <div class="content">
+            <ul>
+                <li><h1>MANY MINDS, ONE MACHINE</h1></li>
+                <li id="smalltext">We host online hackathons to build impactful projects crafted by collective and artificial intelligence.</li>
+                <li id="cta_header">
+                    <a class="cta" href="https://hackly.tech/garage/">Participate to the first project</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    
+    <!-- <section class="video_container">
+        <div class="content">
+            <iframe src="https://www.youtube.com/embed/hFfGctau0BM?si=Dti-Rs0oQ6C2fafZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section> -->
+
+    <section class="explanation">
+        <div class="content">
+            <div class="main_space_container"></div>
+            <div class="main_text_container">
+                <p>Collaborate with a community of hundreds of smart builders to build projects that actually get done. No team forming, no all-nighters, no endless solo grinding. Contribute when you want and let the crowd carry you.</p>
+                <br>
+                <p>Imagine an open crowd working together to guide a single AI coding agent. Participants can propose and improve each other's prompts. We continually score them on accuracy, reliability, and complexity. Every 8 hours, the highest-rated prompt is fed to the AI agent.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq_section">
+        <div class="content">
+            <div class="faq_content_container">
+                <h2>Frequently Asked Questions</h2>
+                <button class="accordion">What is Hackly?</button>
+                <div class="panel">
+                    <p>Hackly is an online community of 400+ people working together to launch useful open source projects. Instead of small teams grinding in isolation, we co-create one project by proposing and refining prompts. Every eight hours, the top-rated prompt is fed to the AI, and the project evolves in real time.<br><br>
+                    We want to use simple rules, automated scoring, and transparent systems to keep the whole collaborative process structured and fair.</p>
+                </div>
+
+                <button class="accordion">How do I get started?</button>
+                <div class="panel">
+                    <p>We're running a pilot to see how this kind of collaboration feels and how we can improve it. Once we hit 50 project proposals, the 8-hour cycles begin. You can propose an idea <a href="https://hackly.tech/garage/">here</a>, or join our Discord to connect with the community and follow the project's progress.</p>
+                </div>
+
+                <button class="accordion">Who can join (and is it free)?</button>
+                <div class="panel">
+                    <p>Anyone interested in development can join! The main goal of this challenge is to involve a more diverse range of people in building coding projects. Since the prompt should reflect the collective input of many users, we believe that the more diverse the group, the better the outcome. And yes, Hackly is completely free.</p>
+                </div>
+
+                <button class="accordion">How are prompts scored and improved?</button>
+                <div class="panel">
+                    <p>Prompts are evaluated on three metrics: Accuracy (0–10) for clarity, scope, specificity, and context; Reliability (0–10) for iteration, testability, and performance; and Complexity (0–10) for depth, novelty, and integration.</p>
+                </div>
+
+                <button class="accordion">What rewards do participants get?</button>
+                <div class="panel">
+                    <p>If we manage to find a sponsor, we would like to give financial rewards following the top users on the leaderboard. For pilot projects, there are no financial rewards.</p>
+                </div>
+
+                <button class="accordion">How are the participants ranked?</button>
+                <div class="panel">
+                    <p>Participants can earn points by submitting new prompts and improving existing ones. Note that you earn more points by working on prompts that have been refined multiple times - the deeper the improvement chain, the bigger the bonus, because you're building on valuable work that others have already contributed to.</p>
+                </div>
+                
+                <button class="accordion" id="last_acc">I still have questions.</button>
+                <div class="panel">
+                    <p>Our Discord community is active, welcoming, and happy to help.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="thank">
+        <div class="content">
+            <p>Made from the ❤️ by the Hackly team.</p>
+        </div>
+    </div>
+</body>
+</html>

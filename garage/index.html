@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Hackly</title>
+        <link rel="stylesheet" href="styles/utilities/variables.css" />
+        <link rel="stylesheet" href="styles/components/layout.css" />
+        <link rel="stylesheet" href="styles/components/branches.css" />
+        <link rel="stylesheet" href="styles/components/sidebar.css" />
+        <link rel="stylesheet" href="styles/components/archive.css" />
+        <link rel="stylesheet" href="styles/components/auth.css" />
+    </head>
+    <body>
+        <div class="screen-too-small">
+            <p>This application requires a larger screen size to function properly.</p>
+            <p>Please use a desktop or laptop computer.</p>
+        </div>
+        <nav class="navbar">
+            <div class="navbar-left">
+                <span class="branch-counter">50 projects left before start</span>
+            </div>
+            <div class="navbar-right">
+                <button class="tour-btn" id="tourButton" title="Take a quick tour">Help</button>
+                <button class="theme-toggle" id="themeToggle">☼</button>
+                <a href="#" class="codebase-link">Codebase</a>
+                <button class="login-btn" id="authButton">Sign in</button>
+            </div>
+        </nav>
+
+        <div class="layout">
+            <aside class="sidebar">
+                <div class="sidebar-top">
+                    <h3 class="sidebar-title">Evaluation Results</h3>
+                    <div id="evalSummary" class="eval-summary"></div>
+                </div>
+                <div class="sidebar-bottom">
+                    <div class="hcw-title">HCW 1</div>
+                    <div class="poster-container">
+                        <img src="https://preview.redd.it/3veowxtcmq471.jpg?width=640&crop=smart&auto=webp&s=c582ad5d40f381678eb9abd9e2ef92b64975795b" alt="HCW Poster" class="poster-image" />
+                    </div>
+                </div>
+            </aside>
+
+            <section class="panel expanded" data-panel="projects">
+                <div class="panel-tab">
+                    <span class="panel-tab-label">PROJECTS</span>
+                </div>
+                <div class="panel-content">
+                    <div class="panel-header">
+                        <button class="btn-new-branch">+ New Prompt</button>
+                        <div class="panel-controls">
+                            <div class="search-wrapper">
+                                <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <path d="m21 21-4.35-4.35"></path>
+                                </svg>
+                                <input type="text" class="search-input" placeholder="Search branches, owners..." />
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="branches-container">
+                        <div class="branches-header">
+                            <div class="branch-col branch-col-rank"><button class="sort-head-btn" type="button">Date <svg class="chevron-down" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"></polyline></svg></button></div>
+                            <div class="branch-col branch-col-title">Title</div>
+                            <div class="branch-col branch-col-owner">Owner</div>
+                        </div>
+                        
+                        <div id="branchesContainer" class="branches-list"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" data-panel="archive">
+                <div class="panel-tab">
+                    <span class="panel-tab-label">ARCHIVE</span>
+                </div>
+                <div class="panel-content">
+                    <div class="panel-info">
+                        <p>Will store prompt history and AI replies.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" data-panel="leaderboard">
+                <div class="panel-tab" id="leaderboardTab">
+                    <span class="panel-tab-label">RANKING</span>
+                </div>
+                <div class="panel-content">
+                    <div class="panel-header">
+                        <h3>Leaderboard</h3>
+                        <span class="info-link" id="rankingInfoBtn">See how ranking works</span>
+                    </div>
+                    <div class="leaderboard-container">
+                        <div class="leaderboard-header">
+                            <div class="leaderboard-col leaderboard-col-rank">Rank</div>
+                            <div class="leaderboard-col leaderboard-col-user">User</div>
+                            <div class="leaderboard-col leaderboard-col-points">Points</div>
+                        </div>
+                        <div id="leaderboardList" class="leaderboard-list" aria-live="polite"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Ranking Info Modal -->
+        <div id="rankingInfoModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>How Ranking Works</h3>
+                    <button class="modal-close" id="rankingInfoClose">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h4>How You Earn Points</h4>
+                    <ul>
+                        <li><strong>Getting Started:</strong> The first 10 people to submit prompts each get 5 points</li>
+                        <li><strong>Going Deeper:</strong> When you improve a branch that's already been improved, you earn bonus points. The more levels deep you go, the more points you get!</li>
+                        <li><strong>Making It Better:</strong> If you significantly improve someone's work, you get 3 times the improvement score as bonus points</li>
+                        <li><strong>Taking Ownership:</strong> When you create the best version of a branch, you become the owner and get 10 bonus points</li>
+                        <li><strong>Legacy Rewards:</strong> When someone builds on your work and makes it better, you get 25 points for being the foundation</li>
+                    </ul>
+                    
+                    <h4>Competitive Branch Ownership</h4>
+                    <p>Prompts are like contests - whoever gets the best evaluation score owns it. When someone improves a branch, ownership transfers and they get points. Previous owners are rewarded for creating the foundation.</p>
+                  
+                </div>
+            </div>
+        </div>
+
+        <!-- Firebase compat SDKs -->
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+        
+        <!-- Dynamic Firebase config (generated by GitHub Actions) -->
+        <script src="config.js"></script>
+        
+        <!-- Initialize Firebase and expose window.db -->
+        <script src="scripts/config/firebase-compat-init.js" defer></script>
+        
+        <!-- Authentication System -->
+        <script src="scripts/utils/auth-service.js" defer></script>
+        <script src="scripts/utils/main-auth.js" defer></script>
+        <script src="scripts/utils/auth-gate.js" defer></script>
+        
+        <script src="scripts/services/archive.js" defer></script>
+        <script src="scripts/components/archive.js" defer></script>
+        <script src="scripts/utils/theme.js"></script>
+        <script src="scripts/components/leaderboard.js" defer></script>
+        
+        <!-- Modular Hackly System -->
+        <script src="scripts/components/PanelManager.js" defer></script>
+        <script src="scripts/components/DataService.js" defer></script>
+        <script src="scripts/components/SortManager.js" defer></script>
+        <script src="scripts/components/ModalManager.js" defer></script>
+        <script src="scripts/components/FileManager.js" defer></script>
+        <script src="scripts/components/EditorManager.js" defer></script>
+        <script src="scripts/components/EvaluationManager.js" defer></script>
+        <script src="scripts/components/SidebarManager.js" defer></script>
+        <script src="scripts/components/BranchManager.js" defer></script>
+        
+        <!-- Performance Optimization Modules -->
+        <script src="scripts/components/PerformanceOptimizer.js" defer></script>
+        <script src="scripts/components/DOMOptimizer.js" defer></script>
+        
+        <!-- Tour System -->
+        <script src="scripts/components/TourManager.js" defer></script>
+        
+        <script src="scripts/components/layout-new.js" defer></script>
+    </body>
+</html>

@@ -1,0 +1,359 @@
+/* ===== Sidebar Layout ===== */
+
+.sidebar {
+    position: sticky;
+    top: 32px; /* Account for navbar height */
+    min-width: 300px;
+    max-width: 500px;
+    width: 30%;
+    height: calc(100vh - 32px); /* Full height minus navbar */
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevent sidebar itself from scrolling */
+}
+
+.sidebar-top {
+    flex: 1; /* Take up available space */
+    min-height: 0; /* Important for flex child to scroll properly */
+    padding: 24px;
+    border-bottom: 2px solid var(--color-text);
+    overflow-y: auto; /* Add scroll if content overflows */
+    transition: all 0.3s ease; /* Smooth transition for expansion */
+}
+
+/* When sidebar has content (expanded), make it take full height and scrollable */
+.sidebar-top.expanded {
+    min-height: 100%; /* Take full height when expanded */
+}
+
+/* Custom scrollbar for sidebar */
+.sidebar-top::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar-top::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar-top::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 4px;
+}
+
+.sidebar-top::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-secondary);
+}
+
+/* Firefox scrollbar */
+.sidebar-top {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+}
+
+/* Sidebar title styling */
+.sidebar-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    color: var(--color-text);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    display: none; /* Hidden by default, shown when content appears */
+}
+
+/* Minimal styles per sidebarevals.md */
+.eval-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.eval-summary .headline {
+    font-weight: 800;
+    font-size: 16px;
+}
+.eval-summary .metric {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+}
+.eval-summary .block {
+    padding-left: 10px;
+    border-left: 2px solid var(--color-border);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.sidebar-bottom {
+    flex: 0 0 auto; /* Don't grow, size to content */
+    min-height: 0; /* Important for flex-grow to work correctly in a flex column */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden; /* prevent content overflow */
+    transition: flex 0.3s ease; /* Smooth transition for resizing */
+}
+
+.hcw-title {
+    font-size: var(--font-size-hcw-title);
+    font-weight: 900;
+    text-align: center;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    margin: 0; /* Add some margin */
+}
+
+.poster-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    padding-bottom: 24px; /* Add some padding at the bottom */
+}
+
+.poster-image {
+    width: 90%;
+    max-width: 280px;
+    height: auto;
+    object-fit: contain; /* Use contain to ensure the whole image is visible */
+    border-radius: 0;
+    max-height: 100%; /* Allow image to fill the container height */
+}
+
+/* ===== Evaluation Display ===== */
+
+.evaluation-display {
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.evaluation-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: var(--color-text);
+}
+
+.branch-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+}
+
+.branch-name {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.model-used {
+    color: var(--color-text-secondary);
+    font-style: italic;
+}
+
+.evaluation-scores h4,
+.evaluation-feedback h4,
+.evaluation-suggestions h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: var(--color-text);
+}
+
+.score-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.score-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 8px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-text);
+    border-radius: 0;
+    font-size: 12px;
+}
+
+.score-label {
+    font-weight: 500;
+}
+
+.score-value {
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.feedback-section {
+    margin-bottom: 12px;
+}
+
+.feedback-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.feedback-list li {
+    font-size: 12px;
+    line-height: 1.4;
+    padding: 4px 8px;
+    background: var(--color-bg);
+    border-left: 3px solid var(--color-accent);
+    color: var(--color-text);
+}
+
+.evaluation-suggestions .feedback-list li {
+    border-left-color: var(--color-accent);
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.evaluation-feedback .feedback-section:first-child .feedback-list li {
+    border-left-color: var(--color-primary);
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.evaluation-feedback .feedback-section:last-child .feedback-list li {
+    border-left-color: var(--color-primary-dark);
+    background: rgba(29, 78, 216, 0.05);
+}
+
+/* ===== Enhanced Evaluation Display ===== */
+
+.total-score {
+    margin-bottom: 16px;
+}
+
+.total-score-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: var(--color-accent);
+    color: white;
+    border-radius: 0;
+    font-weight: 700;
+}
+
+/* ===== Simple Evaluation Summary ===== */
+.eval-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.eval-summary .headline {
+    font-size: var(--font-size-branch);
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.eval-summary .metric {
+    font-weight: 600;
+    font-size: var(--font-size-branch-sub);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+.eval-summary .block {
+    font-size: var(--font-size-branch-sub);
+    line-height: 1.5;
+    padding-left: 12px;
+    border-left: 2px solid var(--color-border);
+    margin: 4px 0 12px 0;
+}
+
+.score-grid-detailed {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.score-item-detailed {
+    padding: 8px 12px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-text);
+    border-radius: 0;
+}
+
+.score-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.score-header .score-label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.score-header .score-value {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--color-accent);
+}
+
+.score-rationale {
+    font-size: 11px;
+    line-height: 1.3;
+    color: var(--color-text-secondary);
+    font-style: italic;
+    border-left: 2px solid var(--color-accent);
+    padding-left: 8px;
+}
+
+.evaluation-feedback h5,
+.evaluation-suggestions h5 {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0 0 6px 0;
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.evaluation-error {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-text);
+    border-radius: 0;
+    padding: 12px;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.evaluation-error::before {
+    content: "⚠️";
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    font-size: 14px;
+}
+
+.evaluation-error p {
+    margin: 0 0 4px 0 0 0 0 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.evaluation-error pre {
+    margin: 0 0 0 20px;
+    font-size: 10px;
+    color: var(--color-text-secondary);
+    max-height: 100px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 8px;
+    border-radius: 0;
+}
+
+

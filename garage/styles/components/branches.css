@@ -1,0 +1,789 @@
+/* ===== Branches Table Layout ===== */
+
+.branches-header {
+    display: flex;
+    padding: 16px 24px;
+    font-weight: 700;
+    font-size: 14px;
+    position: sticky;
+    top: 0;
+    background: var(--color-bg);
+    z-index: 10;
+    border-bottom: 1px dashed var(--color-text);
+}
+
+/* Allow dropdown to overflow out of the rank header cell */
+.branches-header .branch-col-rank {
+    overflow: visible;
+    position: relative;
+}
+
+.branch-row {
+    display: flex;
+    padding: 24px 24px;
+    border-top: 1px dashed var(--color-text);
+    border-bottom: 1px dashed var(--color-text);
+    font-size: var(--font-size-branch-sub); /* Use smaller font for row base */
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.branch-row:first-child {
+    border-top: none;
+}
+
+.branch-row:not(:first-child) {
+    margin-top: 5px;
+}
+
+.branch-row:hover {
+    background: var(--color-bg-secondary);
+}
+
+/* Subtle processing indicator for rows under active evaluation */
+.branch-row.is-processing {
+    position: relative;
+}
+
+.branch-row.is-processing::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--color-accent);
+    animation: pulse-bar var(--transition-duration) ease-in-out infinite alternate;
+}
+
+@keyframes pulse-bar {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+}
+
+.branch-col {
+    flex: 1;
+    padding: 0 16px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    min-width: 0; /* allow columns to shrink */
+    overflow: hidden; /* prevent text overflow */
+    font-weight: normal; /* Not bold */
+    /* Font size will be overridden by specific column classes */
+    white-space: nowrap; /* prevent text wrapping */
+    text-overflow: ellipsis; /* show ellipsis for long text */
+}
+
+/* Header sort button in rank column (unstyled button, inherits header look) */
+.sort-head-btn {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.sort-head-btn:focus {
+    outline: none;
+}
+
+/* Chevron icon styling */
+.sort-head-btn .chevron-down {
+    width: 14px;
+    height: 14px;
+    stroke-width: 3;
+    margin-top: 1px; /* Slight adjustment to align with text baseline */
+}
+
+/* Specific flex adjustments for different column types */
+.branch-col-rank {
+    flex: 0 0 100px;
+}
+
+.branch-col-title {
+    flex: 2;
+}
+
+.branch-col-owner {
+    flex: 0 0 120px;
+    /* Same style as branches-header */
+}
+
+.branches-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.branches-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Changed from hidden */
+    min-width: 0; /* allow container to shrink */
+    flex: 1; /* Allow container to grow and fill space */
+}
+
+/* Username rank styling removed - ranks now only shown in navbar */
+
+/* ===== Pagination ===== */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--color-bg);
+}
+
+/* ===== Leaderboard ===== */
+.leaderboard-container {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px dashed var(--color-text);
+}
+
+.leaderboard-header {
+    display: flex;
+    padding: 16px 24px;
+    position: sticky;
+    top: 0;
+    background: var(--color-bg);
+    z-index: 10;
+    border-bottom: 1px dashed var(--color-text);
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.leaderboard-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.leaderboard-row {
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px dashed var(--color-text);
+}
+
+.leaderboard-col {
+    flex: 1;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.leaderboard-col-rank { flex: 0 0 100px; }
+.leaderboard-col-user { flex: 2; gap: 10px; }
+.leaderboard-col-points { flex: 0 0 140px; justify-content: flex-end; }
+
+.lb-avatar {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--color-text);
+    object-fit: cover;
+}
+
+.lb-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.leaderboard-empty {
+    padding: 20px 24px;
+    color: var(--color-text-secondary);
+}
+
+.page-btn {
+    padding: 8px 16px;
+    background: var(--color-bg);
+    color: var(--color-text);
+    border: 1px solid var(--color-text);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.15s ease;
+    min-width: 60px;
+}
+
+.page-btn:hover:not(:disabled) {
+    background: var(--color-text);
+    color: var(--color-bg);
+}
+
+.page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: var(--color-text-secondary);
+}
+
+.page-info {
+    font-size: 14px;
+    color: var(--color-text);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* ===== Sort Menu Styling ===== */
+.sort-menu-btn {
+    background: var(--color-bg);
+    color: var(--color-text);
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    transition: background-color 0.15s ease;
+}
+
+.sort-menu-btn:hover {
+    background: var(--color-bg-secondary);
+}
+
+.sort-menu-btn:active {
+    background: var(--color-bg-secondary);
+}
+
+/* Accordion details panel */
+.branch-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-duration) ease;
+}
+
+.branch-details-inner {
+    padding: 16px 24px;
+    background: var(--color-bg-secondary);
+    border-bottom: 1px dashed var(--color-text);
+}
+
+.branch-row.active {
+    background: var(--color-bg-secondary);
+    border-bottom: none;
+}
+
+/* Monaco editor host */
+.editor-host {
+    height: 300px;
+    border: 1px solid var(--color-text);
+    background: var(--color-bg);
+}
+
+/* ===== Branch Toolbar ===== */
+.branch-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    padding: 12px 0;
+}
+
+/* New Prompt button styling - using !important to override any conflicting styles */
+.panel-header .btn-new-branch {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 10px 16px !important;
+    background: var(--color-text) !important; /* Use theme text color for background */
+    color: var(--color-bg) !important; /* Use theme background color for text */
+    border: none !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: all 0.15s ease !important;
+    border-radius: 0 !important;
+    opacity: 1 !important;
+    /* Force override any inherited styles */
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+}
+
+.panel-header .btn-new-branch:hover {
+    background: var(--color-accent) !important; /* Use theme accent color on hover */
+    color: var(--color-bg) !important;
+}
+
+.btn-new-branch .plus-icon {
+    flex-shrink: 0;
+    stroke: currentColor;
+}
+
+/* Add file button styling */
+button[id^="addFile-"] {
+    padding: 10px 16px;
+    background: var(--color-bg);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+button[id^="addFile-"]:hover {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-text);
+}
+
+.branch-toolbar-left {
+    display: flex;
+    gap: 12px;
+}
+
+.branch-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* File tabs */
+.file-tabs {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-tab {
+    padding: 6px 12px;
+    background: transparent;
+    border: 1px solid var(--color-text);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    position: relative;
+}
+
+.file-tab:hover {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-accent);
+}
+
+/* File tab delete button (×) - only visible on hover */
+.file-tab .delete-btn {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    margin-left: 6px;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+}
+
+.file-tab:hover .delete-btn {
+    opacity: 1;
+}
+
+.file-tab .delete-btn:hover {
+    color: var(--color-text);
+}
+
+/* Model select dropdown */
+select[id^="modelSelect-"] {
+    padding: 8px 12px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-size: 14px;
+    min-width: 140px;
+}
+
+select[id^="modelSelect-"]:focus {
+    outline: none;
+    border-color: var(--color-text);
+}
+
+/* Evaluate button */
+.btn-evaluate {
+    padding: 10px 16px;
+    background: var(--color-text);
+    color: var(--color-bg);
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.btn-evaluate:hover {
+    background: var(--color-text);
+    opacity: 0.8;
+}
+
+.btn-evaluate:disabled {
+    background: var(--color-text-muted);
+}
+
+/* ===== Modal Styling ===== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.modal-content {
+    background: var(--color-bg);
+    color: var(--color-text);
+    width: min(900px, 92vw);
+    height: min(70vh, 560px);
+    border: 1px solid var(--color-text);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.modal-title {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.modal-filename {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-text);
+    border-radius: 0;
+}
+
+.modal-filename:focus {
+    outline: none;
+    border-color: var(--color-text);
+}
+
+.modal-close {
+    padding: 8px 12px;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.modal-close:hover {
+    background: var(--color-bg);
+    border-color: var(--color-text);
+}
+
+.modal-editor {
+    flex: 1;
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.modal-save {
+    padding: 10px 16px;
+    background: var(--color-text);
+    color: var(--color-bg);
+    border: none;
+    border-radius: 0;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.modal-save:hover {
+    background: var(--color-text);
+    opacity: 0.8;
+}
+
+/* ===== iPad Keyboard Widget Hiding ===== */
+.iPadShowKeyboard,
+[widgetid*="ShowKeyboardWidget"],
+[class*="ShowKeyboardWidget"],
+[class*="iPadShowKeyboard"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Hide any Monaco editor keyboard widgets */
+.monaco-editor .iPadShowKeyboard,
+.monaco-editor [widgetid*="ShowKeyboardWidget"],
+.monaco-editor [class*="ShowKeyboardWidget"] {
+    display: none !important;
+}
+
+/* ===== Loading States ===== */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--color-text-secondary);
+    font-style: italic;
+}
+
+.loading::before {
+    content: "⏳";
+    margin-right: 8px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+    .branch-toolbar {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+    
+    .branch-toolbar-left,
+    .branch-toolbar-right {
+        justify-content: center;
+    }
+    
+    .modal-content {
+        width: 95vw;
+        height: 80vh;
+        margin: 10px;
+    }
+}
+
+/* ===== Name Modal Styling ===== */
+.name-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+}
+
+.name-modal-content {
+    background: var(--color-bg);
+    color: var(--color-text);
+    width: min(500px, 90vw);
+    border: 1px solid var(--color-text);
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.name-modal-header {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.name-modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.name-modal-body {
+    padding: 20px 24px;
+}
+
+.name-modal-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--color-border);
+    font-size: 16px;
+    background: var(--color-bg);
+    color: var(--color-text);
+    transition: border-color 0.15s ease;
+    box-sizing: border-box;
+}
+
+.name-modal-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.05);
+}
+
+
+
+.name-modal-footer {
+    padding: 16px 24px 20px;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.name-modal-footer button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.name-modal-footer .btn-evaluate {
+    background: var(--color-text);
+    color: var(--color-bg);
+    border: none;
+}
+
+.name-modal-footer .btn-evaluate:hover {
+    background: var(--color-text);
+    opacity: 0.8;
+}
+
+.name-modal-footer .login-btn {
+    background: var(--color-bg-secondary);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.name-modal-footer .login-btn:hover {
+    background: var(--color-bg);
+    border-color: var(--color-text);
+}
+
+/* ===== Panel Header ===== */
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px dashed var(--color-text);
+}
+
+.panel-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.info-link {
+    color: var(--color-text);
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    transition: color 0.15s ease;
+}
+
+.info-link:hover {
+    color: var(--color-text-secondary);
+}
+
+/* ===== Modal ===== */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    background-color: var(--color-bg);
+    margin: 2% auto;
+    padding: 0;
+    border: 1px solid var(--color-text);
+    width: 90%;
+    max-width: 600px;
+    height: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--color-text);
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--color-text);
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    color: var(--color-text-secondary);
+}
+
+.modal-body {
+    padding: 32px;
+    height: auto;
+    overflow: visible;
+}
+
+.modal-body h4 {
+    margin: 28px 0 16px 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.modal-body h4:first-child {
+    margin-top: 0;
+}
+
+.modal-body ul {
+    margin: 20px 0;
+    padding-left: 24px;
+}
+
+.modal-body li {
+    margin: 16px 0;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.modal-body p {
+    margin: 20px 0;
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+

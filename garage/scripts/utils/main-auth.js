@@ -73,7 +73,19 @@ class MainAuth {
         }
         
         if (user) {
-            // Prioritize username over displayName, fallback to email
+            // Check if username is still being loaded (undefined or loading)
+            if (!user.username || user.username === 'user') {
+                // Show loading state while username is being determined
+                btn.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <div class="auth-spinner"></div>
+                        <span>Loading...</span>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Username is ready - show the user dropdown
             const username = user.username || user.displayName || user.email || 'account';
             this.createUserDropdown(btn, username, user);
         } else {

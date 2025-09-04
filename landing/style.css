@@ -168,12 +168,16 @@ nav {
 }
 
 #nav_cta{
-    background-color: var(--accone);
+    background-color: var(--black);
+    color: var(--white);
 }
 
 #nav_cta:hover{
     background-color: var(--acctwo);
+    color: var(--black);
+    transition: background-color 0.25s, color 0.25s;
 }
+
 
 .nav_right ul li a{
     text-wrap: nowrap;
